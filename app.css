@@ -99,31 +99,16 @@ body::before{
   backdrop-filter: blur(8px);
   padding: 1.25rem;
   box-shadow: 0 8px 30px rgb(0 0 0 / 0.18);
-  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, filter .25s ease;
+  transition: border-color .5s ease, box-shadow .5s ease, filter .25s ease, transform .6s ease;
 }
 .card > *{ position: relative; z-index: 1; } /* ensure content sits above glow */
 
 /* Hover lift (composes with tilt/reveal vars) */
 .card:hover{
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
   border-color: rgba(255,255,255,.16);
-  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  box-shadow: 0 20px 60px rgba(59, 59, 59, 0.35);
+  transform: translateY(-4px);
 }
-
-
-.card:hover::before{ transform: translateX(120%); }
-
-/* GLOW RING — behind content */
-.card::after{
-  content:"";
-  position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
-  background: conic-gradient(from 180deg at 50% 50%,
-    rgba(20,184,166,0), rgba(20,184,166,.25), rgba(96,165,250,.25),
-    rgba(167,139,250,.22), rgba(244,114,182,.22), rgba(20,184,166,0));
-  filter: blur(16px); opacity: 0; transition: opacity .25s ease, filter .25s ease;
-  z-index: 0;
-}
-.card:hover::after{ opacity:.75; filter: blur(20px); }
 
 /* Badges */
 .badge{
