@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#05060c" />
+    <title>Buddhi — Portfolio</title>
+
+    <!-- Tailwind (CDN build) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#05060c',
+                        brand: { DEFAULT: '#7dd3fc' }
+                    },
+                    boxShadow: {
+                        glow: '0 0 24px rgba(125,211,252,.45)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Example: JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <!-- Font Awesome Free -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="app.css" />
+</head>
+
+<body class="bg-base text-gray-100 antialiased selection:bg-fuchsia-500/30 scrollbar-neon">
+
+    <!-- Background FX -->
+    <div class="fx-stage" aria-hidden="true">
+        <canvas id="stars"></canvas>
+        <div class="neon-grid"></div>
+
+        <!-- Luminous BG Lights -->
+<div class="fx-lights" aria-hidden="true">
+  <span class="orb orb-teal"></span>
+  <span class="orb orb-blue"></span>
+  <span class="orb orb-fuchsia"></span>
+</div>
+
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur bg-black/35">
+        <div class="max-w-7xl mx-auto h-16 px-4 sm:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="group inline-flex items-center gap-3">
+                <span class="logo-orb"></span>
+                <span class="text-xl font-extrabold tracking-tight neon">Buddhi</span>
+                <span class="sr-only">Go to home</span>
+            </a>
+
+            <!-- Desktop nav -->
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+                <a class="nav-link nav-dot" href="#services"><span>Services</span></a>
+                <a class="nav-link nav-dot" href="#skills"><span>Skills</span></a>
+                <a class="nav-link nav-dot" href="#projects"><span>Projects</span></a>
+                <a class="nav-link nav-dot" href="#background"><span>Background</span></a>
+                <a class="nav-link nav-dot" href="#testimonials"><span>Testimonials</span></a>
+                <a class="nav-link nav-dot" href="#contact"><span>Contact</span></a>
+                <a href="#contact" class="btn-primary mag rounded-lg px-3 py-1.5">Hire me</a>
+            </nav>
+
+            <!-- Mobile toggle -->
+            <button id="nav-toggle"
+                class="md:hidden inline-flex items-center justify-center rounded-lg border border-white/10 px-3 py-2"
+                aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile drawer -->
+        <div id="mnav-backdrop" class="mnav-backdrop" hidden></div>
+        <div id="mobile-nav" class="mobile-panel md:hidden" hidden>
+            <nav class="py-2 space-y-1">
+                <a class="m-link" href="#services" data-close>Services</a>
+                <a class="m-link" href="#skills" data-close>Skills</a>
+                <a class="m-link" href="#projects" data-close>Projects</a>
+                <a class="m-link" href="#background" data-close>Background</a>
+                <a class="m-link" href="#testimonials" data-close>Testimonials</a>
+                <a class="m-link" href="#contact" data-close>Contact</a>
+                <div class="pt-2"><a class="m-link active" href="#contact" data-close>Hire me</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main id="home" class="relative">
+        <!-- HERO -->
+        <section class="relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center">
+            <div class="max-w-7xl mx-auto px-6 mb-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="reveal">
+                        <div
+                            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-300 mb-4">
+                            <span
+                                class="inline-block size-1.5 rounded-full bg-gradient-to-r from-teal-400 via-blue-400 to-fuchsia-400"></span>
+                            Available for freelance work
+                        </div>
+                        <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight">
+                            Hi, I’m <span class="text-brand neon">Buddhika Shahan</span><br />
+                        </h1>
+                        <p class="text-xl sm:text-2xl text-gray-400 mt-4">I turn ideas into full-stack appsrobust on the
+                            backend, seamless on the frontend, and powered by the cloud.</p>
+                        <p class="mt-6 text-lg text-gray-300">
+                            <span class="opacity-60">I’m great at</span>
+                            <span id="typed" class="font-semibold typed-caret"
+                                data-taglines='["Full-Stack Development","Mobile App Development","Frontend Engineering","Backend Development","API Design","Cloud Integration","UI/UX Design","Database Management","Automation & Scripting"]'></span>
+                        </p>
+                        <div class="mt-8 flex items-center gap-4">
+                            <a href="#projects" class="btn-primary mag rounded-xl">View Projects</a>
+                            <a href="#contact" class="btn-ghost rounded-xl">Let’s Talk</a>
+                        </div>
+                        <!-- socials -->
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <!-- GitHub -->
+                            <a href="https://github.com/buddhikashahan" target="_blank" rel="noreferrer"
+                                class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white transition">
+                                <i class="fa-brands fa-github text-lg text-gray-400"></i>
+                                GitHub
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="https://linkedin.com/in/buddhikashahan" target="_blank" rel="noreferrer"
+                                class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-[#0a66c2]/20 hover:text-[#0a66c2] transition">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                LinkedIn
+                            </a>
+
+                            <!-- Email -->
+                            <a href="mailto:buddhikashahan2@gmail.com"
+                                class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-teal-500/20 hover:text-teal-400 transition">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                                Email
+                            </a>
+
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/94766866297" target="_blank" rel="noreferrer"
+                                class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                WhatsApp
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Avatar Tilt (smaller) -->
+                    <div id="hero-avatar" class="reveal">
+                        <div id="avatar-frame"
+                            class="relative tilt glow-border p-1 rounded-full sm:w-[calc(100%-6rem)] mx-auto">
+                            <div class="glow-border-inner rounded-full p-2">
+                                <div id="avatar-glare" class="absolute inset-0 rounded-full pointer-events-none"></div>
+                                <img src="./photo.jpg"
+                                    alt="Buddhi portrait" class="rounded-full aspect-square w-full object-cover"
+                                    loading="lazy" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HERO counters -->
+            <div class="flex justify-center mt-2 mb-6">
+                <div id="hero-counters"
+                    class="grid grid-cols-2 sm:grid-cols-4 gap-4 reveal max-w-7xl mx-auto px-6 w-full">
+                    <!-- Projects -->
+                    <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur">
+                        <div class="mx-auto mb-2 icon-circ"><i class="fa-solid fa-folder-tree"></i></div>
+                        <div class="text-2xl font-bold"><span class="count" data-target="7">0</span>+</div>
+                        <div class="text-xs text-gray-400 mt-1">Projects</div>
+                    </div>
+                    <!-- Clients -->
+                    <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur">
+                        <div class="mx-auto mb-2 icon-circ"><i class="fa-solid fa-user-group"></i></div>
+                        <div class="text-2xl font-bold"><span class="count" data-target="4">0</span>+</div>
+                        <div class="text-xs text-gray-400 mt-1">Clients</div>
+                    </div>
+                    <!-- Experience -->
+                    <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur">
+                        <div class="mx-auto mb-2 icon-circ"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <div class="text-2xl font-bold"><span class="count" data-target="5">0</span><span
+                                class="ml-0.5 text-white text-base opacity-80">yrs</span></div>
+                        <div class="text-xs text-gray-400 mt-1">Experience</div>
+                    </div>
+                    <!-- Technologies -->
+                    <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur">
+                        <div class="mx-auto mb-2 icon-circ"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="text-2xl font-bold"><span class="count" data-target="12">0</span>+</div>
+                        <div class="text-xs text-gray-400 mt-1">Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider: Luminous scroll-reactive line -->
+<div class="my-16">
+  <div class="divider-glow mx-auto px-6" aria-hidden="true">
+    <span class="divider-spark" aria-hidden="true"></span>
+  </div>
+</div>
+
+        <!-- SERVICES -->
+        <section id="services" class="max-w-7xl mx-auto px-6">
+            <header class="reveal sec-head">
+                <p class="sec-kicker"><i class="fa-solid fa-bolt mr-2"></i>What I Do</p>
+                <h2 class="sec-title">Services</h2>
+                <p class="sec-sub">Precision. Performance. Polish.</p>
+            </header>
+
+            <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+  <!-- Web Development -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-solid fa-code"></i></div>
+    <h3 class="font-semibold mb-1">Web Development</h3>
+    <p class="text-sm text-gray-300">Next.js, React, Express, Node.js, PHP, Tailwind CSS, Bootstrap, HTML, CSS, JS, TS</p>
+  </div>
+
+  <!-- Mobile Apps -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-solid fa-mobile-screen-button"></i></div>
+    <h3 class="font-semibold mb-1">Mobile Development</h3>
+    <p class="text-sm text-gray-300">React Native, Flutter, Dart — cross-platform, responsive apps.</p>
+  </div>
+
+  <!-- Backend & APIs -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-solid fa-server"></i></div>
+    <h3 class="font-semibold mb-1">Backend & APIs</h3>
+    <p class="text-sm text-gray-300">Node.js, Express, Python Django, Java Spring Boot.</p>
+  </div>
+
+  <!-- Databases -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-solid fa-database"></i></div>
+    <h3 class="font-semibold mb-1">Databases</h3>
+    <p class="text-sm text-gray-300">MongoDB, MySQL — structured & unstructured data solutions.</p>
+  </div>
+
+  <!-- Desktop & Cross-Platform -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-brands fa-windows"></i></div>
+    <h3 class="font-semibold mb-1">Desktop Apps</h3>
+    <p class="text-sm text-gray-300">Electron — powerful cross-platform desktop applications.</p>
+  </div>
+
+  <!-- Machine Learning -->
+  <div class="card tilt reveal">
+    <div class="icon-circ"><i class="fa-solid fa-brain"></i></div>
+    <h3 class="font-semibold mb-1">Machine Learning</h3>
+    <p class="text-sm text-gray-300">Python ML — predictive models & data-driven solutions.</p>
+  </div>
+</div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS & STACK -->
+<section id="skills" class="max-w-7xl mx-auto px-6 py-16">
+  <header class="reveal sec-head">
+    <p class="sec-kicker"><i class="fa-solid fa-layer-group mr-2"></i>Capabilities</p>
+    <h2 class="sec-title">Skills & Stack</h2>
+    <p class="sec-sub">Neon-sharp proficiency across the stack</p>
+  </header>
+
+  <!-- Core Pillars -->
+  <div class="mt-8 grid md:grid-cols-3 gap-6">
+    <!-- Frontend -->
+    <article class="card card-pro tilt reveal">
+      <div class="card-pro__icon"><i class="fa-solid fa-display"></i></div>
+      <h3 class="card-pro__title">Frontend</h3>
+      <p class="card-pro__sub">React · Next.js · Tailwind · A11y · Animations</p>
+      <div class="mt-4 space-y-3">
+        <div class="meter" data-value="95"><span>React</span><i></i></div>
+        <div class="meter" data-value="90"><span>Next.js</span><i></i></div>
+        <div class="meter" data-value="88"><span>Tailwind</span><i></i></div>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-solid fa-magic"></i> Animations</span>
+        <span class="badge"><i class="fa-solid fa-bolt"></i> Effects</span>
+        <span class="badge"><i class="fa-solid fa-universal-access"></i> Validation</span>
+      </div>
+    </article>
+
+    <!-- Backend -->
+    <article class="card card-pro tilt reveal">
+      <div class="card-pro__icon"><i class="fa-solid fa-server"></i></div>
+      <h3 class="card-pro__title">Backend</h3>
+      <p class="card-pro__sub">Node · Express · Django · Spring Boot · Auth</p>
+      <div class="mt-4 space-y-3">
+        <div class="meter" data-value="86"><span>Node &amp; Express</span><i></i></div>
+        <div class="meter" data-value="78"><span>Python &amp; Django</span><i></i></div>
+        <div class="meter" data-value="74"><span>Java &amp; Spring Boot</span><i></i></div>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-solid fa-lock"></i> Auth</span>
+        <span class="badge"><i class="fa-solid fa-plug"></i> REST</span>
+        <span class="badge"><i class="fa-solid fa-diagram-project"></i> API Design</span>
+      </div>
+    </article>
+
+    <!-- Mobile & Desktop -->
+    <article class="card card-pro tilt reveal">
+      <div class="card-pro__icon"><i class="fa-solid fa-mobile-screen"></i></div>
+      <h3 class="card-pro__title">Mobile & Desktop</h3>
+      <p class="card-pro__sub">React Native · Flutter · Electron</p>
+      <div class="mt-4 space-y-3">
+        <div class="meter" data-value="82"><span>React Native</span><i></i></div>
+        <div class="meter" data-value="80"><span>Flutter / Dart</span><i></i></div>
+        <div class="meter" data-value="72"><span>Electron</span><i></i></div>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-brands fa-apple"></i> iOS</span>
+        <span class="badge"><i class="fa-brands fa-android"></i> Android</span>
+        <span class="badge"><i class="fa-solid fa-desktop"></i> Desktop</span>
+      </div>
+    </article>
+  </div>
+
+  <!-- Data & Platforms -->
+  <div class="mt-6 grid md:grid-cols-3 gap-6">
+    <!-- Databases -->
+    <article class="card tilt reveal">
+      <h3 class="font-semibold mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-database text-brand"></i> Databases
+      </h3>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-solid fa-leaf"></i> MongoDB</span>
+        <span class="badge"><i class="fa-solid fa-database"></i> MySQL</span>
+      </div>
+    </article>
+
+    <!-- Web Platform & Styling -->
+    <article class="card tilt reveal">
+      <h3 class="font-semibold mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-globe text-brand"></i> Web Platform
+      </h3>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-brands fa-html5"></i> HTML</span>
+        <span class="badge"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+        <span class="badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+        <span class="badge"><i class="fa-brands fa-js"></i> TypeScript</span>
+        <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Tailwind</span>
+      </div>
+    </article>
+
+    <!-- AI & ML -->
+    <article class="card tilt reveal">
+      <h3 class="font-semibold mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-pencil-ruler text-brand"></i> AI & ML
+      </h3>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="badge"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="badge"><i class="fa-solid fa-robot"></i> scikit-learn</span>
+        <span class="badge"><i class="fa-solid fa-brain"></i> TensorFlow</span>
+        <span class="badge"><i class="fa-solid fa-brain"></i> PyTorch</span>
+        <span class="badge"><i class="fa-solid fa-chart-line"></i> Pandas</span>
+        <span class="badge"><i class="fa-solid fa-chart-simple"></i> NumPy</span>
+      </div>
+    </article>
+  </div>
+
+  <!-- Languages (badges) -->
+  <div class="mt-10 reveal">
+    <h3 class="text-lg font-semibold mb-3">Programming Languages</h3>
+    <ul class="flex flex-wrap gap-3">
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-js"></i></span>JavaScript / TypeScript</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-python"></i></span>Python</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-java"></i></span>Java</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-golang"></i></span>Dart</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-php"></i></span>PHP</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-html5"></i></span>HTML</li>
+      <li class="badge-pro"><span class="badge-pro__icon"><i class="fa-brands fa-css3-alt"></i></span>CSS</li>
+    </ul>
+  </div>
+</section>
+
+
+           <!-- Divider: Luminous scroll-reactive line -->
+<div class="my-16">
+  <div class="divider-glow mx-auto px-6" aria-hidden="true">
+    <span class="divider-spark" aria-hidden="true"></span>
+  </div>
+</div>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="max-w-7xl mx-auto px-6">
+            <header class="reveal sec-head">
+                <p class="sec-kicker"><i class="fa-solid fa-diagram-project mr-2"></i>Showcase</p>
+                <h2 class="sec-title">Projects</h2>
+                <p class="sec-sub">Showing <span id="proj-count">0</span> projects</p>
+            </header>
+
+            <!-- Controls -->
+            <div id="proj-controls"
+                class="relative z-[4000] flex flex-col lg:flex-row lg:items-end justify-between gap-6 mt-6">
+                <div class="flex flex-col sm:flex-row gap-3 reveal">
+                    <!-- Category -->
+                    <div class="dd w-full sm:w-auto relative z-[4010]">
+                        <button
+                            class="dd-btn w-full sm:min-w-[220px] rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-left"
+                            type="button" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="dd-label">Category: <span class="opacity-70">All</span></span>
+                        </button>
+                        <ul id="proj-dd" class="dd-menu w-full sm:w-[220px] mt-1" role="listbox" tabindex="-1" hidden>
+                            <li class="dd-item" role="option" data-value="All">All</li>
+                            <li class="dd-item" role="option" data-value="Web">Web</li>
+                            <li class="dd-item" role="option" data-value="Mobile">Mobile</li>
+                            <li class="dd-item" role="option" data-value="Data">Data</li>
+                        </ul>
+                        <input type="hidden" id="proj-cat" value="All" />
+                    </div>
+
+                    <!-- Search -->
+                    <input id="proj-search" type="search" placeholder="Search projects…"
+                        class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-teal-400 w-full sm:w-64" />
+
+                    <!-- Sort -->
+                    <div id="proj-sort-dd" class="dd w-full sm:w-auto relative z-[4010]">
+                        <button
+                            class="dd-btn w-full sm:min-w-[180px] rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-left"
+                            type="button" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="dd-label">Sort: <span class="opacity-70">Newest</span></span>
+                        </button>
+                        <ul class="dd-menu w-full sm:w-[180px] mt-1" role="listbox" tabindex="-1" hidden>
+                            <li class="dd-item active" role="option" data-value="new">Newest</li>
+                            <li class="dd-item" role="option" data-value="old">Oldest</li>
+                            <li class="dd-item" role="option" data-value="az">A → Z</li>
+                            <li class="dd-item" role="option" data-value="za">Z → A</li>
+                        </ul>
+                        <input type="hidden" id="proj-sort" value="new" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="proj-grid" class="mt-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-7">
+                <!-- Card 1 -->
+                <article class="proj-card tilt card reveal overflow-hidden p-0" data-cat="Web"
+                    data-title="Portfolio Redesign" data-desc="Tailwind, accessibility, and micro-interactions"
+                    data-tags="react css animations tailwind" data-date="2025-08-05">
+                    <div class="proj-media">
+                        <img class="w-full aspect-video object-cover" loading="lazy"
+                            src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"
+                            alt="Portfolio screenshot" />
+                        <div class="proj-fab"><i class="fa-solid fa-up-right-from-square"></i></div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold">Portfolio Redesign</h3>
+                        <p class="text-sm text-gray-300 mt-1">A11y-first redesign with delightful animations.</p>
+                        <div class="mt-4 flex items-center gap-2"><span class="badge">React</span><span
+                                class="badge">Tailwind</span></div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="proj-card tilt card reveal overflow-hidden p-0" data-cat="Mobile"
+                    data-title="Expense Tracker" data-desc="Flutter app for budgets with charts"
+                    data-tags="flutter charts finance" data-date="2025-07-20">
+                    <div class="proj-media">
+                        <img class="w-full aspect-video object-cover" loading="lazy"
+                            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
+                            alt="Expense app" />
+                        <div class="proj-fab"><i class="fa-solid fa-up-right-from-square"></i></div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold">Expense Tracker</h3>
+                        <p class="text-sm text-gray-300 mt-1">Daily expenses, budgets, and rich charts.</p>
+                        <div class="mt-4 flex items-center gap-2"><span class="badge">Flutter</span><span
+                                class="badge">Dart</span></div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="proj-card tilt card reveal overflow-hidden p-0" data-cat="Data" data-title="Pain Index"
+                    data-desc="Sri Lanka social/economic index" data-tags="python pandas viz storytelling"
+                    data-date="2025-06-29">
+                    <div class="proj-media">
+                        <img class="w-full aspect-video object-cover" loading="lazy"
+                            src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=1200&auto=format&fit=crop"
+                            alt="Data viz" />
+                        <div class="proj-fab"><i class="fa-solid fa-up-right-from-square"></i></div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold">Pain Index</h3>
+                        <p class="text-sm text-gray-300 mt-1">Data-driven storytelling on wellbeing.</p>
+                        <div class="mt-4 flex items-center gap-2"><span class="badge">Python</span><span
+                                class="badge">Pandas</span></div>
+                    </div>
+                </article>
+            </div>
+
+            <p id="proj-empty" class="mt-6 text-sm text-gray-400 hidden">No projects match your filter.</p>
+        </section>
+
+        <!-- BACKGROUND -->
+        <section id="background" class="max-w-7xl mx-auto px-6 py-16">
+            <header class="reveal space-y-2">
+                <p
+                    class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-blue-300/90">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Journey
+                </p>
+                <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Background</h2>
+                <p class="text-slate-300">Biodata • Experience • Education • Certificates</p>
+            </header>
+
+            <!-- Layout -->
+            <div class="mt-10 grid lg:grid-cols-12 gap-6">
+                <!-- LEFT: Sticky Biodata Panel -->
+                <aside class="lg:col-span-4 reveal">
+                    <div
+                        class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                        <!-- Glow gradient -->
+                        <div class="pointer-events-none absolute inset-0 -z-10 opacity-40"
+                            style="background: radial-gradient(600px 240px at 0% 0%, rgba(20,184,166,.18), transparent 60%), radial-gradient(600px 260px at 120% 20%, rgba(96,165,250,.18), transparent 60%), radial-gradient(600px 360px at 50% 120%, rgba(236,72,153,.18), transparent 70%);">
+                        </div>
+
+                        <!-- Top -->
+                        <div class="flex items-center gap-4">
+                            <img src="./photo.jpg"
+                                alt="Avatar" class="size-16 rounded-xl object-cover ring-1 ring-white/15">
+                            <div>
+                                <h3 class="text-xl font-semibold">Buddhika Shahan</h3>
+                                <p class="text-sm text-slate-300">Full-Stack Developer · AI/ML Enthusiast</p>
+                            </div>
+                        </div>
+
+                        <!-- Chips -->
+                        <div class="mt-5 flex flex-wrap gap-2">
+                            <span
+                                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                <i class="fa-solid fa-briefcase text-teal-300"></i> 5+ yrs
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                <i class="fa-solid fa-diagram-project text-blue-300"></i> 7+ Projects
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                <i class="fa-solid fa-circle-check text-fuchsia-300"></i> Available
+                            </span>
+                        </div>
+
+                        <!-- Quick contacts -->
+                        <div class="mt-5 grid grid-cols-3 gap-2">
+                            <a href="https://github.com/buddhikashahan" target="_blank" rel="noreferrer"
+                                class="group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 hover:bg-white/10 transition">
+                                <i class="fa-brands fa-github text-gray-400 group-hover:text-white"></i> <span
+                                    class="hidden sm:inline">GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/buddhikashahan" target="_blank" rel="noreferrer"
+                                class="group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 hover:bg-[#0a66c2]/20 hover:text-[#0a66c2] transition">
+                                <i class="fa-brands fa-linkedin-in"></i> <span class="hidden sm:inline">LinkedIn</span>
+                            </a>
+                            <a href="mailto:buddhikashahan2@gmail.com"
+                                class="group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 hover:bg-orange-500/20 hover:text-orange-400 transition">
+                                <i class="fa-solid fa-envelope"></i> <span class="hidden sm:inline">Email</span>
+                            </a>
+                            <a href="https://wa.me/94766866297" target="_blank" rel="noreferrer"
+                                class="group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200 hover:bg-teal-500/20 hover:text-teal-400 transition">
+                                <i class="fa-brands fa-whatsapp text-teal-300"></i> <span class="hidden sm:inline">WhatsApp</span>
+                            </a>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="mt-6 space-y-3 text-sm text-slate-300">
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-location-dot text-teal-300 mt-0.5"></i>
+                                <div><span class="font-medium text-slate-200">Location:</span> Colombo, Sri Lanka</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-phone text-teal-300 mt-0.5"></i>
+                                <div><span class="font-medium text-slate-200">Phone:</span> +94 76 686 6297</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-cake-candles text-teal-300 mt-0.5"></i>
+                                <div><span class="font-medium text-slate-200">Birthday:</span> 23 Oct 2003</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-user text-teal-300 mt-0.5"></i>
+                                <div><span class="font-medium text-slate-200">Civil Status:</span> Single</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-language text-teal-300 mt-0.5"></i>
+                                <div><span class="font-medium text-slate-200">Languages:</span> English, Sinhala</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-flag text-teal-300 mt-0.5"></i>
+                                <div>
+                                    <span class="font-medium text-slate-200">Nationality:</span>
+                                    Sri Lankan
+                                    <img src="https://cdn.jsdelivr.net/gh/hjnilsson/country-flags/svg/lk.svg" alt="Sri Lanka flag" title="Sri Lanka flag" style="display:inline-block;width:1.8em;vertical-align:middle;margin-left:0.25em;border-radius:2px;" loading="lazy" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="mt-6">
+                            <a href="#!"
+                                class="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold text-[#061312] transition hover:-translate-y-0.5"
+                                style="background-image:linear-gradient(135deg,#14b8a6,#60a5fa,#a78bfa,#f472b6);">
+                                <i class="fa-solid fa-file-arrow-down"></i> Download CV
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- RIGHT: Timelines & Lists -->
+                <div class="lg:col-span-8 space-y-8">
+                    <!-- Experience -->
+                    <section class="reveal">
+                        <header class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold flex items-center gap-2">
+                                <span
+                                    class="inline-grid place-items-center size-8 rounded-lg bg-white/10 border border-white/10">
+                                    <i class="fa-solid fa-briefcase text-teal-300"></i>
+                                </span>
+                                Experience
+                            </h3>
+                        </header>
+
+                        <ol class="mt-5 space-y-6 ml-6">
+                            <!-- item -->
+                            <li class="relative pl-6 border-l border-white/10">
+                                <span class="absolute -left-[6px] top-2 inline-block size-3 rounded-full bg-fuchsia-400 shadow-[0_0_0_4px_rgba(232,121,249,.18)]"></span>
+                                <div class="flex flex-wrap items-center gap-x-3">
+                                    <p class="font-medium">Freelance Full-Stack Developer & AI/ML Specialist</p>
+                                    <span class="text-xs text-slate-400">2020—Present</span>
+                                </div>
+                                <p class="mt-1 text-sm text-slate-300">
+                                    Delivered custom web, mobile, and AI-powered solutions for clients worldwide. Built responsive apps, APIs, and integrated machine learning models using modern stacks. Focused on clear communication, rapid iteration, and robust, scalable results.
+                                </p>
+                                <div class="mt-2 flex flex-wrap gap-2">
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-brands fa-react"></i> React
+                                    </span>
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-brands fa-node-js"></i> Node.js
+                                    </span>
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-brands fa-android"></i> Flutter
+                                    </span>
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-database"></i> MongoDB
+                                    </span>
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-brain"></i> AI/ML
+                                    </span>
+                                    <span class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-cloud"></i> Cloud
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- item -->
+                            <li class="relative pl-6 border-l border-white/10">
+                                <span
+                                    class="absolute -left-[6px] top-2 inline-block size-3 rounded-full bg-teal-300 shadow-[0_0_0_4px_rgba(45,212,191,.18)]"></span>
+                                <div class="flex flex-wrap items-center gap-x-3">
+                                    <p class="font-medium">Full-Stack Web Developer · Jinasena Training Foundation</p>
+                                    <span class="text-xs text-slate-400">2023—Present</span>
+                                </div>
+                                <p class="mt-1 text-sm text-slate-300">
+                                    Led the design and development of a modern web platform for training management, integrating user authentication, course scheduling, and real-time analytics. Maintainable solutions using Python, Django, React and PostgreSQL.
+                                </p>
+                                <div class="mt-2 flex flex-wrap gap-2">
+                                    <span
+                                        class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-brands fa-python"></i> Python
+                                    </span>
+                                    <span
+                                        class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-leaf"></i> Django
+                                    </span>
+                                    <span
+                                        class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-bolt"></i> React
+                                    </span>
+                                    <span
+                                        class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-database"></i> Postgres
+                                    </span>
+                                    <span
+                                        class="badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> Design System
+                                    </span>
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="reveal">
+                        <header class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold flex items-center gap-2">
+                                <span
+                                    class="inline-grid place-items-center size-8 rounded-lg bg-white/10 border border-white/10">
+                                    <i class="fa-solid fa-user-graduate text-blue-300"></i>
+                                </span>
+                                Education
+                            </h3>
+                        </header>
+
+                        <ol class="mt-5 space-y-6 ml-6">
+                            <li class="relative pl-6 border-l border-white/10">
+                                <span
+                                    class="absolute -left-[6px] top-2 inline-block size-3 rounded-full bg-blue-300 shadow-[0_0_0_4px_rgba(147,197,253,.18)]"></span>
+                                <div class="flex flex-wrap items-center gap-x-3">
+                                    <p class="font-medium">BSc (Hons) in Information Technology Specializing in Artificial Intelligence · SLIIT (UG)</p>
+                                    <span class="text-xs text-slate-400">2019—2023</span>
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <!-- Certificates -->
+                    <section class="reveal">
+                        <header class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold flex items-center gap-2">
+                                <span
+                                    class="inline-grid place-items-center size-8 rounded-lg bg-white/10 border border-white/10">
+                                    <i class="fa-solid fa-award text-fuchsia-300"></i>
+                                </span>
+                                Certificates
+                            </h3>
+                        </header>
+
+                        <ul class="mt-5 grid sm:grid-cols-2 gap-3">
+                            <li
+                                class="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-regular fa-circle-check text-teal-300"></i>
+                                    <span class="text-sm">Introduction to Python · Sololearn</span>
+                                </div>
+                                <span class="text-xs text-slate-400">2024</span>
+                            </li>
+                            <li
+                                class="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-regular fa-circle-check text-teal-300"></i>
+                                    <span class="text-sm">Introduction to JavaScript · Sololearn</span>
+                                </div>
+                                <span class="text-xs text-slate-400">2024</span>
+                            </li>
+                            <li
+                                class="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-regular fa-circle-check text-teal-300"></i>
+                                    <span class="text-sm">Introduction to C · Sololearn</span>
+                                </div>
+                                <span class="text-xs text-slate-400">2024</span>
+                            </li>
+                            <li
+                                class="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-regular fa-circle-check text-teal-300"></i>
+                                    <span class="text-sm">Web Design for Beginners · University of Moratuwa</span>
+                                </div>
+                                <span class="text-xs text-slate-400">2024</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+
+    <!-- Divider: Luminous scroll-reactive line -->
+<div class="my-16">
+  <div class="divider-glow mx-auto px-6" aria-hidden="true">
+    <span class="divider-spark" aria-hidden="true"></span>
+  </div>
+</div>
+
+        <!-- TESTIMONIALS (Slider) -->
+        <section id="testimonials" class="max-w-7xl mx-auto px-6">
+            <header class="reveal sec-head">
+                <p class="sec-kicker"><i class="fa-solid fa-comments mr-2"></i>Social Proof</p>
+                <h2 class="sec-title">Testimonials</h2>
+                <p class="sec-sub">What clients say</p>
+            </header>
+
+            <div class="mt-8 relative reveal">
+                <div id="ts-track" class="overflow-hidden">
+                    <div class="ts-inner flex will-change-transform">
+                        <!-- slides -->
+                        <figure class="ts-slide card min-w-0">
+                            <div class="flex items-center gap-4">
+                                <img class="size-12 rounded-full object-cover"
+                                    src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2b?q=80&w=300&auto=format&fit=crop"
+                                    alt="A. Fernando" />
+                                <div>
+                                    <figcaption class="font-semibold leading-tight">A. Fernando</figcaption>
+                                    <p class="text-xs text-gray-400">Product Lead</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-sm text-gray-300 mt-3">“Buddhi shipped a polished app ahead of
+                                schedule—stellar attention to detail.”</blockquote>
+                        </figure>
+
+                        <figure class="ts-slide card min-w-0">
+                            <div class="flex items-center gap-4">
+                                <img class="size-12 rounded-full object-cover"
+                                    src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=300&auto=format&fit=crop"
+                                    alt="S. Perera" />
+                                <div>
+                                    <figcaption class="font-semibold leading-tight">S. Perera</figcaption>
+                                    <p class="text-xs text-gray-400">Founder</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-sm text-gray-300 mt-3">“Great communication, clean code, and the UI
+                                pops. Highly recommended.”</blockquote>
+                        </figure>
+
+                        <figure class="ts-slide card min-w-0">
+                            <div class="flex items-center gap-4">
+                                <img class="size-12 rounded-full object-cover"
+                                    src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=300&auto=format&fit=crop"
+                                    alt="D. Jay" />
+                                <div>
+                                    <figcaption class="font-semibold leading-tight">D. Jay</figcaption>
+                                    <p class="text-xs text-gray-400">CTO</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-sm text-gray-300 mt-3">“Understood our users quickly and delivered
+                                smooth experiences.”</blockquote>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- controls -->
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex gap-2">
+                        <button id="ts-prev" class="btn-ghost rounded-lg px-3 py-2"><i
+                                class="fa-solid fa-arrow-left"></i></button>
+                        <button id="ts-next" class="btn-primary rounded-lg px-3 py-2"><i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div id="ts-dots" class="flex gap-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="max-w-7xl mx-auto px-6 pt-16">
+            <header class="reveal sec-head">
+                <p class="sec-kicker"><i class="fa-solid fa-paper-plane mr-2"></i>Get In Touch</p>
+                <h2 class="sec-title">Let’s work together</h2>
+                <p class="sec-sub">Have a project in mind? Send a message—I'll reply soon!</p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-8 mt-8">
+                <ul class="text-sm text-gray-300 space-y-2 reveal">
+                    <li><i class="fa-regular fa-circle-check text-teal-300 mr-2"></i> Rapid responses & clear timelines
+                    </li>
+                    <li><i class="fa-regular fa-circle-check text-teal-300 mr-2"></i> Clean code & documentation</li>
+                    <li><i class="fa-regular fa-circle-check text-teal-300 mr-2"></i> Pixel-perfect polish</li>
+                </ul>
+
+                <form class="card reveal space-y-3" method="post" action="#!">
+                    <input name="name" required placeholder="Your name" class="f-input" />
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <input name="email" type="email" required placeholder="Email" class="f-input" />
+                        <input name="company" placeholder="Company" class="f-input" />
+                    </div>
+                    <div class="dd">
+                        <button class="dd-btn w-full f-input text-left" type="button" aria-haspopup="listbox"
+                            aria-expanded="false">
+                            <span class="dd-label">Project type: <span class="opacity-70">Select…</span></span>
+                        </button>
+                        <ul class="dd-menu w-full mt-1" role="listbox" tabindex="-1" hidden>
+                            <li class="dd-item" role="option" data-value="web">Web App</li>
+                            <li class="dd-item" role="option" data-value="mobile">Mobile App</li>
+                            <li class="dd-item" role="option" data-value="uiux">UI/UX Design</li>
+                            <li class="dd-item" role="option" data-value="other">Other</li>
+                        </ul>
+                        <input type="hidden" name="project_type" value="">
+                    </div>
+                    <textarea name="message" rows="5" required placeholder="Tell me about your project…"
+                        class="f-input"></textarea>
+                    <div class="pt-1"><button class="btn-primary mag rounded-xl" type="submit">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (distinct style) -->
+    <footer class="site-footer mt-24">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-gray-400 flex justify-center">
+            <p>© <span id="year"></span> Buddhi • Built with love & photons • <a href="#home"
+                    class="text-brand hover:underline">Back to top</a></p>
+        </div>
+    </footer>
+
+    <!-- App JS -->
+    <script src="app.js" defer></script>
+</body>
+
+</html>
