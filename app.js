@@ -92,7 +92,7 @@ document.addEventListener('click', (e) => {
   const header = document.querySelector('header');
   const offset = header ? header.getBoundingClientRect().height : 64;
 
-  const EARLY = 0;                     // <— reveal distance (px) from edges
+  const EARLY = -30;                     // <— reveal distance (px) from edges
   const topMargin = (EARLY - (offset + 10)); // compensate sticky header
 
   const io = new IntersectionObserver((entries)=>{

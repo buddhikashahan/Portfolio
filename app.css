@@ -161,7 +161,7 @@ body::before{
     rotateY(var(--tiltY))
     translateZ(var(--tiltZ))
     scale(var(--tiltScale));
-  transition: transform .18s ease, opacity .7s ease;
+  transition: transform .2s ease, opacity .2s ease;
 }
 .reveal.show{ opacity:1; --revY:0px; }
 
