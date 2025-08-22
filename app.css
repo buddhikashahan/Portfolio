@@ -105,8 +105,6 @@ body::before{
 
 /* Hover lift (composes with tilt/reveal vars) */
 .card:hover{
-  --tiltZ: 8px;            /* tiny pop forward */
-  --tiltScale: 1.015;      /* subtle scale */
   background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
   border-color: rgba(255,255,255,.16);
   box-shadow: 0 20px 60px rgba(0,0,0,.35);
@@ -243,7 +241,6 @@ body::before{
 #projects .dd{ z-index:2000; }
 #projects .dd .dd-menu{ z-index:2010; }
 #proj-grid .proj-card{ position:relative; z-index:1; }
-#proj-grid .proj-card:hover{ z-index:50; }
 
 /* Skill cards */
 .card-pro{
