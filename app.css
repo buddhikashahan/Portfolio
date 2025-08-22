@@ -10,6 +10,7 @@
 html{
   scrollbar-width: thin;
   scrollbar-color: var(--ff-thumb) rgba(255,255,255,.06); /* thumb / track */
+  overflow-x: hidden;
 }
 
 /* Chromium/WebKit (Chrome, Edge, Safari) */

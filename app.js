@@ -349,3 +349,37 @@ document.addEventListener('click', (e) => {
   addEventListener('resize', update, { passive: true });
   update();
 })();
+
+/* Contact form → mailto redirect */
+(() => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const TO_EMAIL = 'buddhikashahan2@gmail.com'; // ← replace with your address
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const fd = new FormData(form);
+    const name    = (fd.get('name') || '').toString().trim();
+    const email   = (fd.get('email') || '').toString().trim();
+    const company = (fd.get('company') || '').toString().trim();
+    const type    = (fd.get('project_type') || '').toString().trim() || 'General Inquiry';
+    const message = (fd.get('message') || '').toString().trim();
+
+    const subject = `New inquiry: ${type} — ${name || 'Portfolio'}`;
+    const body = [
+      `Name: ${name || '-'}`,
+      `Email: ${email || '-'}`,
+      `Company: ${company || '-'}`,
+      `Project type: ${type}`,
+      `---`,
+      message || ''
+    ].join('\n');
+
+    const href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // open default mail client
+    window.location.href = href;
+  });
+})();
