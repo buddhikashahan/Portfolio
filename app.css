@@ -238,8 +238,7 @@ body::before{
 .dd-item:hover, .dd-item.active{ background: rgba(255,255,255,.1); color:#fff; }
 
 /* Keep dropdown above cards */
-#projects .dd{ z-index:2000; }
-#projects .dd .dd-menu{ z-index:2010; }
+
 #proj-grid .proj-card{ position:relative; z-index:1; }
 
 /* Project controls: make Category & Sort identical */
