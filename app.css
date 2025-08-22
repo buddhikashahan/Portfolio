@@ -136,17 +136,11 @@ body::before{
 
 /* === Reveal (composes with tilt vars; replays on scroll) === */
 .reveal{
-  --revY: 10px;
-  --tiltX: 0deg; --tiltY: 0deg; --tiltZ: 0px; --tiltScale: 1; --tiltPerspective: 900px;
+  --revY: 50px;
   opacity: 0;
   transform:
-    perspective(var(--tiltPerspective))
-    translateY(var(--revY))
-    rotateX(var(--tiltX))
-    rotateY(var(--tiltY))
-    translateZ(var(--tiltZ))
-    scale(var(--tiltScale));
-  transition: transform .2s ease, opacity .2s ease;
+    translateY(var(--revY));
+  transition: transform 1s ease, opacity .5s ease;
 }
 .reveal.show{ opacity:1; --revY:0px; }
 
