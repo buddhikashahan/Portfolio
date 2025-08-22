@@ -82,25 +82,38 @@ document.addEventListener('click', (e) => {
     btn.addEventListener('mousemove',(e)=>{ if(rAF) cancelAnimationFrame(rAF); rAF=requestAnimationFrame(()=>onMove(e)); });
     btn.addEventListener('mouseleave', reset);
   });
-  const tilt=(card,e)=>{ const r=card.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height; const rx=(y-.5)*-6, ry=(x-.5)*6; card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`; };
-  const leave=card=>{ card.style.transform='translateY(0)'; };
-  $$('.tilt').forEach(card=>{ let rAF; card.addEventListener('mousemove',(e)=>{ if(rAF) cancelAnimationFrame(rAF); rAF=requestAnimationFrame(()=>tilt(card,e)); }); card.addEventListener('mouseleave',()=>leave(card)); });
-})();
+  })();
 
-/* Reveal (repeat each time you scroll in/out) */
+/* Reveal (early: 300px from top/bottom + emits enter/exit) */
 (() => {
   const els = $$('.reveal'); if (!els.length) return;
   if (!('IntersectionObserver' in window)) { els.forEach(el=>el.classList.add('show')); return; }
+
   const header = document.querySelector('header');
   const offset = header ? header.getBoundingClientRect().height : 64;
+
+  const EARLY = 0;                     // <— reveal distance (px) from edges
+  const topMargin = (EARLY - (offset + 10)); // compensate sticky header
+
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(en=>{
-      if (en.isIntersecting) en.target.classList.add('show');
-      else en.target.classList.remove('show'); // <-- remove when leaving so it re-animates next time
+      if (en.isIntersecting) {
+        en.target.classList.add('show');
+        en.target.dispatchEvent(new CustomEvent('reveal:enter', { bubbles:true }));
+      } else {
+        en.target.classList.remove('show');
+        en.target.dispatchEvent(new CustomEvent('reveal:exit', { bubbles:true }));
+      }
     });
-  }, { rootMargin: `-${offset+10}px 0px -20% 0px`, threshold: 0.1 });
+  }, {
+    // top gets header compensation; bottom is pure EARLY
+    rootMargin: `${topMargin}px 0px ${EARLY}px 0px`,
+    threshold: 0.01
+  });
+
   els.forEach(el=>io.observe(el));
 })();
+
 
 /* Counters */
 (() => {
