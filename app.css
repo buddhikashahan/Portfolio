@@ -242,6 +242,24 @@ body::before{
 #projects .dd .dd-menu{ z-index:2010; }
 #proj-grid .proj-card{ position:relative; z-index:1; }
 
+/* Project controls: make Category & Sort identical */
+#proj-controls .dd--control .dd-btn{
+  display:inline-flex; align-items:center; justify-content:space-between;
+  width:100%;
+  min-width:220px;                  /* same width for both */
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:.75rem;
+  background:rgba(255,255,255,.05);
+  padding:.5rem .75rem;
+  font-size:.875rem;
+  text-align:left;
+}
+#proj-controls .dd--control .dd-menu{
+  width:220px;                      /* match button width */
+}
+#proj-controls .dd--control .dd-label{ color:#e5e7eb; }
+
+
 /* Skill cards */
 .card-pro{
   position:relative; overflow:hidden; padding-top:1.25rem;
