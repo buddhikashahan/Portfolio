@@ -1,0 +1,724 @@
+{
+  "profile": [
+    {
+      "id": "singleton",
+      "fullName": "Buddhika Shahan",
+      "headline": "Full-Stack Developer",
+      "tagline": "I turn ideas into full-stack apps - robust on the backend, seamless on the frontend, and powered by the cloud.",
+      "bio": "I’m a full-stack developer from Colombo, Sri Lanka, currently finishing up my degree in IT with a focus on AI.\r\n\r\nFor the past six years, I’ve been building real-world web, mobile, and AI apps for clients around the globe. Most of my work revolves around Python and Node.js on the backend, paired with React, Next.js, and Flutter on the frontend. I genuinely care about the small details that make software great: fast load times, clean code, reliable databases, and interfaces that feel effortless to use.\r\n\r\nWhen I’m not coding, you’ll probably find me tinkering with machine learning, tweaking design details, or automating little things in my daily routine just for fun.",
+      "taglines": "[\"Full-Stack Development\",\"Mobile App Development\",\"Frontend Engineering\",\"Backend Development\",\"API Design\",\"Cloud Integration\",\"Database Management\",\"Automation & Scripting\"]",
+      "avatarUrl": "/photo.png",
+      "resumeUrl": null,
+      "email": "kabsjayamal@gmail.com",
+      "location": "Colombo, Sri Lanka",
+      "timezone": "GMT+5:30",
+      "languages": "English, Sinhala",
+      "githubUrl": "https://github.com/buddhikashahan",
+      "linkedinUrl": "https://linkedin.com/in/buddhikashahan",
+      "whatsappUrl": "https://wa.me/94766866297",
+      "twitterUrl": null,
+      "available": true,
+      "yearsExperience": 6,
+      "projectsCount": 19,
+      "clientsCount": 4,
+      "updatedAt": "2026-09-17T12:30:28.320+00:00"
+    }
+  ],
+  "services": [
+    {
+      "id": "seed-service-0",
+      "title": "Web Development",
+      "description": "Next.js, React, Express, Node.js, PHP and Tailwind CSS - fast, accessible, production-ready web applications.",
+      "icon": "Code",
+      "order": 0,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.740+00:00",
+      "updatedAt": "2026-09-15T03:40:47.740+00:00"
+    },
+    {
+      "id": "seed-service-1",
+      "title": "Mobile Development",
+      "description": "React Native, Flutter and Dart. Cross-platform apps that feel native on both iOS and Android.",
+      "icon": "Smartphone",
+      "order": 1,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.743+00:00",
+      "updatedAt": "2026-09-15T03:40:47.743+00:00"
+    },
+    {
+      "id": "seed-service-2",
+      "title": "Backend & APIs",
+      "description": "Node.js, Express, Python Django and Java Spring Boot. Well-documented REST APIs and solid authentication.",
+      "icon": "Server",
+      "order": 2,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.746+00:00",
+      "updatedAt": "2026-09-15T03:40:47.746+00:00"
+    },
+    {
+      "id": "seed-service-3",
+      "title": "Databases",
+      "description": "MongoDB, MySQL and PostgreSQL. Schema design, indexing and migrations for structured and unstructured data.",
+      "icon": "Database",
+      "order": 3,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.748+00:00",
+      "updatedAt": "2026-09-15T03:40:47.748+00:00"
+    },
+    {
+      "id": "seed-service-4",
+      "title": "Desktop Apps",
+      "description": "Cross-platform desktop applications built with Electron and .NET for Windows, macOS, and Linux.",
+      "icon": "Monitor",
+      "order": 4,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.751+00:00",
+      "updatedAt": "2026-09-17T03:17:43.491+00:00"
+    },
+    {
+      "id": "seed-service-5",
+      "title": "Machine Learning",
+      "description": "Python ML pipelines - predictive models, data cleaning and evaluation you can actually deploy.",
+      "icon": "BrainCircuit",
+      "order": 5,
+      "published": true,
+      "createdAt": "2026-09-15T03:40:47.754+00:00",
+      "updatedAt": "2026-09-15T03:40:47.754+00:00"
+    }
+  ],
+  "skillCategories": [
+    {
+      "id": "seed-skillcat-0",
+      "name": "Frontend",
+      "description": "Interfaces that stay fast and accessible as they grow.",
+      "icon": "Monitor",
+      "order": 0,
+      "createdAt": "2026-09-15T04:30:11.166+00:00",
+      "updatedAt": "2026-09-15T04:30:11.166+00:00"
+    },
+    {
+      "id": "seed-skillcat-1",
+      "name": "Backend",
+      "description": "APIs, auth and the business logic behind them.",
+      "icon": "Server",
+      "order": 1,
+      "createdAt": "2026-09-15T04:30:11.192+00:00",
+      "updatedAt": "2026-09-15T04:30:11.192+00:00"
+    },
+    {
+      "id": "seed-skillcat-2",
+      "name": "Data",
+      "description": "Schema design, indexing and migrations.",
+      "icon": "Database",
+      "order": 2,
+      "createdAt": "2026-09-15T04:30:11.217+00:00",
+      "updatedAt": "2026-09-15T04:30:11.217+00:00"
+    },
+    {
+      "id": "seed-skillcat-3",
+      "name": "Mobile & Desktop",
+      "description": "One codebase, every platform that matters.",
+      "icon": "Smartphone",
+      "order": 3,
+      "createdAt": "2026-09-15T04:30:11.236+00:00",
+      "updatedAt": "2026-09-15T04:30:11.236+00:00"
+    },
+    {
+      "id": "seed-skillcat-4",
+      "name": "AI & Machine Learning",
+      "description": "Modelling, evaluation and the data work around it.",
+      "icon": "BrainCircuit",
+      "order": 4,
+      "createdAt": "2026-09-15T04:30:11.256+00:00",
+      "updatedAt": "2026-09-15T04:30:11.256+00:00"
+    },
+    {
+      "id": "seed-skillcat-5",
+      "name": "Tooling & Platform",
+      "description": "What the day-to-day actually runs on.",
+      "icon": "Wrench",
+      "order": 5,
+      "createdAt": "2026-09-15T04:30:11.275+00:00",
+      "updatedAt": "2026-09-15T04:30:11.275+00:00"
+    }
+  ],
+  "skills": [
+    {
+      "id": "seed-skillcat-0-skill-0",
+      "name": "React",
+      "icon": "react",
+      "note": "5 years",
+      "order": 0,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.170+00:00",
+      "updatedAt": "2026-09-15T04:30:11.170+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-1",
+      "name": "Next.js",
+      "icon": "nextdotjs",
+      "note": "App Router",
+      "order": 1,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.173+00:00",
+      "updatedAt": "2026-09-15T04:30:11.173+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-2",
+      "name": "TypeScript",
+      "icon": "typescript",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.176+00:00",
+      "updatedAt": "2026-09-15T04:30:11.176+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-3",
+      "name": "Tailwind CSS",
+      "icon": "tailwindcss",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.179+00:00",
+      "updatedAt": "2026-09-15T04:30:11.179+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-4",
+      "name": "Framer Motion",
+      "icon": "framer",
+      "note": null,
+      "order": 4,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.181+00:00",
+      "updatedAt": "2026-09-15T04:30:11.181+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-5",
+      "name": "HTML",
+      "icon": "html5",
+      "note": null,
+      "order": 5,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.184+00:00",
+      "updatedAt": "2026-09-15T04:30:11.184+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-6",
+      "name": "CSS",
+      "icon": "css",
+      "note": null,
+      "order": 6,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.186+00:00",
+      "updatedAt": "2026-09-15T04:30:11.186+00:00"
+    },
+    {
+      "id": "seed-skillcat-0-skill-7",
+      "name": "Sass",
+      "icon": "sass",
+      "note": null,
+      "order": 7,
+      "categoryId": "seed-skillcat-0",
+      "createdAt": "2026-09-15T04:30:11.189+00:00",
+      "updatedAt": "2026-09-15T04:30:11.189+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-0",
+      "name": "Node.js",
+      "icon": "nodedotjs",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.194+00:00",
+      "updatedAt": "2026-09-15T04:30:11.194+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-1",
+      "name": "Express",
+      "icon": "express",
+      "note": null,
+      "order": 1,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.197+00:00",
+      "updatedAt": "2026-09-15T04:30:11.197+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-2",
+      "name": "Python",
+      "icon": "python",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.199+00:00",
+      "updatedAt": "2026-09-15T04:30:11.199+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-3",
+      "name": "Django",
+      "icon": "django",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.202+00:00",
+      "updatedAt": "2026-09-15T04:30:11.202+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-4",
+      "name": "Java",
+      "icon": null,
+      "note": "Spring Boot",
+      "order": 4,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.206+00:00",
+      "updatedAt": "2026-09-15T04:30:11.206+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-5",
+      "name": "Spring Boot",
+      "icon": "springboot",
+      "note": null,
+      "order": 5,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.209+00:00",
+      "updatedAt": "2026-09-15T04:30:11.209+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-6",
+      "name": "PHP",
+      "icon": "php",
+      "note": null,
+      "order": 6,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.211+00:00",
+      "updatedAt": "2026-09-15T04:30:11.211+00:00"
+    },
+    {
+      "id": "seed-skillcat-1-skill-7",
+      "name": "GraphQL",
+      "icon": "graphql",
+      "note": null,
+      "order": 7,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-15T04:30:11.214+00:00",
+      "updatedAt": "2026-09-15T04:30:11.214+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-0",
+      "name": "PostgreSQL",
+      "icon": "postgresql",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.219+00:00",
+      "updatedAt": "2026-09-15T04:30:11.219+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-1",
+      "name": "MongoDB",
+      "icon": "mongodb",
+      "note": null,
+      "order": 1,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.222+00:00",
+      "updatedAt": "2026-09-15T04:30:11.222+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-2",
+      "name": "MySQL",
+      "icon": "mysql",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.225+00:00",
+      "updatedAt": "2026-09-15T04:30:11.225+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-3",
+      "name": "Prisma",
+      "icon": "prisma",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.228+00:00",
+      "updatedAt": "2026-09-15T04:30:11.228+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-4",
+      "name": "Redis",
+      "icon": "redis",
+      "note": null,
+      "order": 4,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.230+00:00",
+      "updatedAt": "2026-09-15T04:30:11.230+00:00"
+    },
+    {
+      "id": "seed-skillcat-2-skill-5",
+      "name": "Supabase",
+      "icon": "supabase",
+      "note": null,
+      "order": 5,
+      "categoryId": "seed-skillcat-2",
+      "createdAt": "2026-09-15T04:30:11.233+00:00",
+      "updatedAt": "2026-09-15T04:30:11.233+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-0",
+      "name": "Flutter",
+      "icon": "flutter",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.238+00:00",
+      "updatedAt": "2026-09-15T04:30:11.238+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-1",
+      "name": "Dart",
+      "icon": "dart",
+      "note": null,
+      "order": 1,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.241+00:00",
+      "updatedAt": "2026-09-15T04:30:11.241+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-2",
+      "name": "React Native",
+      "icon": "react",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.244+00:00",
+      "updatedAt": "2026-09-15T04:30:11.244+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-3",
+      "name": "Electron",
+      "icon": "electron",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.247+00:00",
+      "updatedAt": "2026-09-15T04:30:11.247+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-4",
+      "name": "Android",
+      "icon": "android",
+      "note": null,
+      "order": 4,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.250+00:00",
+      "updatedAt": "2026-09-15T04:30:11.250+00:00"
+    },
+    {
+      "id": "seed-skillcat-3-skill-5",
+      "name": "iOS",
+      "icon": "apple",
+      "note": null,
+      "order": 5,
+      "categoryId": "seed-skillcat-3",
+      "createdAt": "2026-09-15T04:30:11.253+00:00",
+      "updatedAt": "2026-09-15T04:30:11.253+00:00"
+    },
+    {
+      "id": "seed-skillcat-4-skill-0",
+      "name": "PyTorch",
+      "icon": "pytorch",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-4",
+      "createdAt": "2026-09-15T04:30:11.259+00:00",
+      "updatedAt": "2026-09-15T04:30:11.259+00:00"
+    },
+    {
+      "id": "seed-skillcat-4-skill-1",
+      "name": "TensorFlow",
+      "icon": "tensorflow",
+      "note": null,
+      "order": 1,
+      "categoryId": "seed-skillcat-4",
+      "createdAt": "2026-09-15T04:30:11.261+00:00",
+      "updatedAt": "2026-09-15T04:30:11.261+00:00"
+    },
+    {
+      "id": "seed-skillcat-4-skill-2",
+      "name": "scikit-learn",
+      "icon": "scikitlearn",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-4",
+      "createdAt": "2026-09-15T04:30:11.264+00:00",
+      "updatedAt": "2026-09-15T04:30:11.264+00:00"
+    },
+    {
+      "id": "seed-skillcat-4-skill-3",
+      "name": "Pandas",
+      "icon": "pandas",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-4",
+      "createdAt": "2026-09-15T04:30:11.267+00:00",
+      "updatedAt": "2026-09-15T04:30:11.267+00:00"
+    },
+    {
+      "id": "seed-skillcat-4-skill-4",
+      "name": "NumPy",
+      "icon": "numpy",
+      "note": null,
+      "order": 4,
+      "categoryId": "seed-skillcat-4",
+      "createdAt": "2026-09-15T04:30:11.271+00:00",
+      "updatedAt": "2026-09-15T04:30:11.271+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-0",
+      "name": "Git",
+      "icon": "git",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.279+00:00",
+      "updatedAt": "2026-09-15T04:30:11.279+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-1",
+      "name": "GitHub",
+      "icon": "github",
+      "note": null,
+      "order": 1,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.282+00:00",
+      "updatedAt": "2026-09-15T04:30:11.282+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-2",
+      "name": "Docker",
+      "icon": "docker",
+      "note": null,
+      "order": 2,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.285+00:00",
+      "updatedAt": "2026-09-15T04:30:11.285+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-3",
+      "name": "Vercel",
+      "icon": "vercel",
+      "note": null,
+      "order": 3,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.287+00:00",
+      "updatedAt": "2026-09-15T04:30:11.287+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-4",
+      "name": "Cloudflare",
+      "icon": "cloudflare",
+      "note": null,
+      "order": 4,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.290+00:00",
+      "updatedAt": "2026-09-15T04:30:11.290+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-5",
+      "name": "Figma",
+      "icon": "figma",
+      "note": null,
+      "order": 5,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.292+00:00",
+      "updatedAt": "2026-09-15T04:30:11.292+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-6",
+      "name": "Postman",
+      "icon": "postman",
+      "note": null,
+      "order": 6,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.295+00:00",
+      "updatedAt": "2026-09-15T04:30:11.295+00:00"
+    },
+    {
+      "id": "seed-skillcat-5-skill-8",
+      "name": "Linux",
+      "icon": "linux",
+      "note": null,
+      "order": 8,
+      "categoryId": "seed-skillcat-5",
+      "createdAt": "2026-09-15T04:30:11.301+00:00",
+      "updatedAt": "2026-09-15T04:30:11.301+00:00"
+    },
+    {
+      "id": "cmu4yowi50000sw64e04goa64",
+      "name": "Golang",
+      "icon": "go",
+      "note": null,
+      "order": 0,
+      "categoryId": "seed-skillcat-1",
+      "createdAt": "2026-09-17T03:20:13.709+00:00",
+      "updatedAt": "2026-09-17T03:20:13.709+00:00"
+    }
+  ],
+  "projects": [
+    {
+      "id": "cmu3y4d9k0000ik64ovclxey5",
+      "slug": "titans-academy-dynamic-website-admin-dashboard",
+      "title": "Titans Academy - Dynamic Website & Admin Dashboard",
+      "summary": "A modern, responsive website developed for Titans Leadership Academy, featuring a custom PHP/MySQL backend, secure admin authentication, dynamic content management, blog publishing, gallery management, client/testimonial management, contact messages, and a dedicated admin dashboard.",
+      "content": "## Titans Academy\r\n\r\n**Titans Academy** is a full-stack web development project created for a leadership academy focused on empowering the next generation of leaders.\r\n\r\nThe project combines a modern, responsive public-facing website with a custom-built administration dashboard, allowing website content to be managed easily without directly editing the source code.\r\n\r\n### Project Overview\r\n\r\nThe website was designed to present the academy, its programs, activities, clients, gallery, blog content, and contact information through a clean and professional interface.\r\n\r\nAlongside the main website, I developed a secure admin dashboard that provides centralized control over the site's dynamic content.\r\n\r\n### Key Features\r\n\r\n- Modern and responsive landing page\r\n- Custom PHP backend\r\n- MySQL database integration\r\n- Secure admin authentication\r\n- Admin dashboard\r\n- Blog post management\r\n- Blog category management\r\n- Gallery management\r\n- Programs management\r\n- Client management\r\n- Services management\r\n- Testimonials management\r\n- Contact message management\r\n- Dynamic website content\r\n- Responsive design for desktop, tablet, and mobile\r\n- Structured and scalable database architecture\r\n\r\n### Admin Dashboard\r\n\r\nThe custom admin panel allows authorized administrators to manage the website through a simple dashboard.\r\n\r\nAdministrators can manage:\r\n\r\n- Blog posts and categories\r\n- Programs\r\n- Gallery images\r\n- Clients\r\n- Services\r\n- Testimonials\r\n- Contact messages\r\n- Website settings and other content\r\n\r\nThe dashboard also provides quick statistics and an overview of the website's content.\r\n\r\n### Technologies Used\r\n\r\n**Frontend**\r\n- HTML5\r\n- CSS3\r\n- JavaScript\r\n- Responsive Web Design\r\n\r\n**Backend**\r\n- PHP\r\n- MySQL\r\n- Authentication & Session Management\r\n\r\n### Development Focus\r\n\r\nThe main goal of this project was to build more than a static company website. I wanted to create a practical content management solution where the client could maintain and update the website through a dedicated administration system.\r\n\r\nThe project focuses on clean UI design, maintainable backend architecture, database-driven content, security, and usability.\r\n\r\n### Live Website\r\n\r\n[Visit Titans Academy](https://titans.lk/)",
+      "coverImage": "/uploads/7a5aee55-36ef-4fed-9ca7-7ccd81f33a8d.png",
+      "category": "Full-Stack",
+      "tags": "PHP, MySQL, Full Stack Development, Web Development, Admin Dashboard, Authentication, CMS, Responsive Design, Frontend Development ,Backend Development, Database Design, JavaScript, HTML5, CSS3, Portfolio Project",
+      "repos": "[{\"label\":\"GitHub\",\"url\":\"https://github.com/buddhikashahan/Titans\"}]",
+      "liveUrls": "[{\"label\":\"Live site\",\"url\":\"https://titans.lk/\"}]",
+      "featured": true,
+      "published": true,
+      "order": 0,
+      "date": "2025-02-16T00:00:00.000+00:00",
+      "createdAt": "2026-09-16T10:16:29.480+00:00",
+      "updatedAt": "2026-09-16T10:16:59.570+00:00"
+    },
+    {
+      "id": "cmu3ynco30001ik640m2sbghp",
+      "slug": "buddy-ai-powered-learning-platform",
+      "title": "Buddy - AI Powered Learning Platform",
+      "summary": "Buddy AI is an AI-powered learning platform built for Jinasena Training Foundation to support students, teachers, and administrators through an intelligent, role-based digital learning environment. The platform includes AI chat, live talk capabilities, secure authentication, and a modern web interfa",
+      "content": "## Buddy AI\r\n\r\n**Buddy AI** is an AI-powered learning platform developed for **Jinasena Training Foundation**. The project was designed to create a smart, modern, and scalable educational system that helps learners interact with AI in a more engaging and supportive way.\r\n\r\nThe platform combines an intuitive web interface with powerful AI capabilities, giving students access to learning support, conversations, and guidance while also providing role-based access for administrators and teachers.\r\n\r\n### Project Overview\r\n\r\nBuddy AI was built as a full-stack educational platform focused on intelligent learning experiences. It supports multiple user roles including **Admin**, **Teacher**, and **Student**, ensuring that each user has access to the tools and features relevant to their role.\r\n\r\nThe system includes AI-assisted learning, real-time conversational support, secure authentication, and a clean user experience tailored for academic environments.\r\n\r\n### Key Features\r\n\r\n- AI-powered learning assistant\r\n- Gemini integration for intelligent responses\r\n- Vertex AI powered backend workflows\r\n- Live Talk interface for interactive AI conversations\r\n- Role-based access control\r\n- Separate access levels for **Admin**, **Teacher**, and **Student**\r\n- Secure authentication system\r\n- Responsive modern web application\r\n- Student portal interface\r\n- Conversation history and chat management\r\n- Firebase database integration\r\n- Firebase storage integration\r\n- Scalable backend architecture\r\n\r\n### User Roles\r\n\r\nThe platform was designed with role-based access to support different types of users:\r\n\r\n- **Admin** – manages the platform, users, and system-level functionality\r\n- **Teacher** – supports academic use, guidance, and structured learning workflows\r\n- **Student** – interacts with Buddy AI for learning, questions, and educational support\r\n\r\n### Technologies Used\r\n\r\n**Frontend**\r\n- Next.js\r\n- Tailwind CSS\r\n\r\n**Backend**\r\n- Golang\r\n- Vertex AI\r\n- Gemini Integration\r\n\r\n**Database & Storage**\r\n- Firebase Database\r\n- Firebase Storage\r\n\r\n### Development Focus\r\n\r\nThe main goal of Buddy AI was to create a smart educational platform that goes beyond a standard web app. The focus was on building a system that is:\r\n\r\n- intelligent\r\n- scalable\r\n- user-friendly\r\n- role-aware\r\n- suitable for modern learning environments\r\n\r\nSpecial attention was given to clean UI design, performance, responsive layout, secure access control, and practical AI integration for real educational use cases.\r\n\r\n### Outcome\r\n\r\nBuddy AI provides a strong foundation for AI-assisted education by combining modern web technologies with powerful AI services. It offers a seamless experience for institutions looking to bring interactive learning, guided support, and structured access control into one platform.",
+      "coverImage": "/uploads/9c5284d7-e356-494f-a59d-5a9ddffe53bc.png",
+      "category": "Full-Stack",
+      "tags": "Next.js, Golang, Gemini API, Vertex AI, Firebase, Firebase Storage, Tailwind CSS, AI Platform, EdTech, Learning Platform, Role-Based Access Control, Web App, Full Stack Development, Admin Panel, Student Portal",
+      "repos": "[{\"label\":\"Web App\",\"url\":\"https://github.com/buddhikashahan/buddy-web\"},{\"label\":\"Backend\",\"url\":\"https://github.com/buddhikashahan/buddy-server\"}]",
+      "liveUrls": "[{\"label\":\"Live site\",\"url\":\"https://buddy.tjg.lk/\"}]",
+      "featured": true,
+      "published": true,
+      "order": 0,
+      "date": "2026-09-16T00:00:00.000+00:00",
+      "createdAt": "2026-09-16T10:31:15.171+00:00",
+      "updatedAt": "2026-09-17T08:34:07.460+00:00"
+    },
+    {
+      "id": "cmu5eil8n00004w6497k9dbrg",
+      "slug": "lk-lottery-results-sri-lanka-lottery-results-api-for-node-js",
+      "title": "lk-lottery-results - Sri Lanka Lottery Results API for Node.js",
+      "summary": "An open-source, type-safe TypeScript/Node.js npm package for retrieving real-time and historical Sri Lankan lottery results from the National Lotteries Board (NLB) and Development Lotteries Board (DLB). It transforms lottery data into developer-friendly structured JSON with historical draw support,",
+      "content": "## 🇱🇰 lk-lottery-results\r\n\r\n**lk-lottery-results** is an open-source TypeScript/Node.js npm package designed to make Sri Lankan lottery data easily accessible to developers.\r\n\r\nThe library retrieves **real-time and historical lottery results** from both the **National Lotteries Board (NLB)** and **Development Lotteries Board (DLB)** and converts them into clean, structured JSON that can be easily integrated into websites, mobile applications, APIs, dashboards, and other software.\r\n\r\n### 🎯 Project Goal\r\n\r\nSri Lankan lottery information is primarily published for human consumption through official websites. This project provides a developer-friendly abstraction for accessing that information programmatically through a simple, type-safe JavaScript/TypeScript API.\r\n\r\n### ✨ Key Features\r\n\r\n- Real-time lottery result retrieval\r\n- Historical draw lookup\r\n- Complete NLB and DLB lottery coverage\r\n- Structured JSON output\r\n- Draw numbers and ISO-formatted dates\r\n- Winning numbers and special letters\r\n- Zodiac signs and special/super numbers\r\n- Full prize breakdown tables\r\n- Winner counts and total payouts\r\n- Next jackpot / Super Prize information\r\n- Automatic NLB verification challenge handling\r\n- Exponential backoff and retry handling\r\n- Configurable request timeouts\r\n- Custom headers and proxy support\r\n- Strongly typed TypeScript API\r\n- Dual ESM and CommonJS support\r\n- Custom error classes for predictable error handling\r\n\r\n### 🛡️ Resilient Data Retrieval\r\n\r\nThe package includes built-in mechanisms for dealing with network failures and source-site restrictions.\r\n\r\nFor NLB requests, it can automatically resolve the site's verification challenge and maintain the required cookie in memory. Requests also support retries with exponential backoff, configurable timeouts, custom headers, and proxies.\r\n\r\n### 📊 Rich Structured Data\r\n\r\nLottery results are normalized into predictable JavaScript objects containing information such as:\r\n\r\n- Lottery board\r\n- Lottery ID and name\r\n- Draw number\r\n- Draw date\r\n- Day of the week\r\n- Winning numbers\r\n- Special letters\r\n- Jackpot information\r\n- Prize tiers\r\n- Winning patterns\r\n- Prize amounts\r\n- Winner counts\r\n- Total payouts\r\n- Original source URL\r\n\r\nThis allows applications to consume lottery information without implementing their own scraping and parsing logic.\r\n\r\n### 🧩 Developer-Friendly API\r\n\r\nThe package provides simple helper functions for common operations, including:\r\n\r\n- Fetching all latest NLB and DLB results\r\n- Fetching board-specific results\r\n- Retrieving a specific lottery draw\r\n- Searching historical draws\r\n- Looking up results by date\r\n- Automatically routing requests to the correct lottery board\r\n\r\nFor more advanced applications, the `SriLankaLottery` client provides configurable access to both NLB and DLB data sources.\r\n\r\n### ⚙️ Technologies\r\n\r\n- TypeScript\r\n- Node.js\r\n- Web Scraping\r\n- HTML Parsing\r\n- Asynchronous JavaScript\r\n- JSON Data Processing\r\n- ESM & CommonJS\r\n- npm Package Development\r\n\r\n### 📦 Distribution\r\n\r\nPublished as an **npm package**, allowing developers to integrate Sri Lankan lottery results directly into Node.js and TypeScript projects.\r\n\r\n```bash\r\nnpm install lk-lottery-results\r\n```\r\n\r\n### 🧪 Reliability\r\n\r\nThe project includes unit testing and live integration verification to help ensure parsers and data retrieval continue working as expected.\r\n\r\nClear error types are provided for network failures, unavailable lottery draws, and parsing errors, allowing applications to handle failures gracefully.\r\n\r\n### 🔓 Open Source\r\n\r\nThe project is open source and distributed under the **MIT License**, making it available for developers to use, modify, and contribute to.",
+      "coverImage": "/uploads/cb878448-ae65-4b79-bea3-446f2b190253.png",
+      "category": "Tools",
+      "tags": "TypeScript, Node.js, npm Package, Open Source, Web Scraping, API, Sri Lanka, Lottery Results, NLB, DLB, JSON, Data Parsing, Type-Safe API, ESM, CommonJS, Backend Development, Developer Tools, Data Extraction, npm, MIT License",
+      "repos": "[{\"label\":\"Github Repository\",\"url\":\"https://github.com/buddhikashahan/lk-lottery-results\"}]",
+      "liveUrls": "[]",
+      "featured": false,
+      "published": true,
+      "order": 0,
+      "date": "2026-09-17T00:00:00.000+00:00",
+      "createdAt": "2026-09-17T10:43:13.031+00:00",
+      "updatedAt": "2026-09-17T10:43:13.031+00:00"
+    }
+  ],
+  "posts": [],
+  "experiences": [
+    {
+      "id": "seed-exp-0",
+      "role": "Full-Stack Developer",
+      "company": "Jinasena Training Foundation",
+      "location": "Colombo, Sri Lanka",
+      "description": "Led the design and development of full-stack training and AI-powered learning platforms, building secure, scalable experiences for administrators, teachers, and students. Developed role-based authentication, content and training management, interactive AI assistants, live conversational features, dashboards, and data-driven workflows using Next.js, Golang, Gemini, Vertex AI, Firebase, PHP, MySQL, and Tailwind CSS. Designed reusable UI patterns and responsive interfaces to maintain consistency across products and simplify future development.",
+      "tags": "Next.js, Golang, Gemini, Vertex AI, Firebase, PHP, MySQL, Tailwind CSS",
+      "startDate": "2023-01-01T00:00:00.000+00:00",
+      "endDate": null,
+      "current": true,
+      "order": 0,
+      "createdAt": "2026-09-15T03:40:47.876+00:00",
+      "updatedAt": "2026-09-17T03:13:13.482+00:00"
+    },
+    {
+      "id": "seed-exp-1",
+      "role": "Freelance Full-Stack Developer",
+      "company": "Self-employed",
+      "location": "Remote",
+      "description": "Delivered custom web, mobile and AI-powered solutions for clients worldwide. Built responsive applications and APIs, integrated machine learning models, and worked directly with founders on scope, timelines and rollout.",
+      "tags": "React, Node.js, Flutter, MongoDB, Python, Golang, Next.js, AI/ML, Cloud",
+      "startDate": "2020-06-01T00:00:00.000+00:00",
+      "endDate": null,
+      "current": true,
+      "order": 1,
+      "createdAt": "2026-09-15T03:40:47.879+00:00",
+      "updatedAt": "2026-09-17T03:14:11.576+00:00"
+    }
+  ],
+  "education": [
+    {
+      "id": "seed-edu-0",
+      "degree": "BSc (Hons) in Information Technology, specialising in Artificial Intelligence (UG)",
+      "institution": "Sri Lanka Institute of Information Technology (SLIIT)",
+      "description": "Building a strong foundation in artificial intelligence, machine learning, deep learning, data science, algorithms, and software engineering, while gaining practical experience in developing intelligent systems, full-stack applications, databases, and real-world AI solutions.",
+      "startYear": "2024",
+      "endYear": null,
+      "order": 0,
+      "createdAt": "2026-09-15T03:40:47.883+00:00",
+      "updatedAt": "2026-09-17T03:23:47.807+00:00"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "seed-cert-0",
+      "title": "Introduction to Python",
+      "issuer": "Sololearn",
+      "year": "2024",
+      "url": null,
+      "order": 0,
+      "createdAt": "2026-09-15T03:40:47.887+00:00",
+      "updatedAt": "2026-09-15T03:40:47.887+00:00"
+    },
+    {
+      "id": "seed-cert-1",
+      "title": "Introduction to JavaScript",
+      "issuer": "Sololearn",
+      "year": "2024",
+      "url": null,
+      "order": 1,
+      "createdAt": "2026-09-15T03:40:47.890+00:00",
+      "updatedAt": "2026-09-15T03:40:47.890+00:00"
+    },
+    {
+      "id": "seed-cert-2",
+      "title": "Introduction to C",
+      "issuer": "Sololearn",
+      "year": "2024",
+      "url": null,
+      "order": 2,
+      "createdAt": "2026-09-15T03:40:47.892+00:00",
+      "updatedAt": "2026-09-15T03:40:47.892+00:00"
+    },
+    {
+      "id": "seed-cert-3",
+      "title": "Web Design for Beginners",
+      "issuer": "University of Moratuwa",
+      "year": "2024",
+      "url": null,
+      "order": 3,
+      "createdAt": "2026-09-15T03:40:47.894+00:00",
+      "updatedAt": "2026-09-15T03:40:47.894+00:00"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "cmu4zhi9d0001sw64ymas5klk",
+      "name": "Dhanushka Udayanga Herath",
+      "role": "Founder",
+      "company": "Titans Leadership Academy",
+      "quote": "Working with Buddhika was a great experience. He understood the vision and requirements of Titans Leadership Academy and transformed them into a modern, professional, and user-friendly digital platform. His ability to combine thoughtful design with strong technical execution was impressive, and he was responsive and committed throughout the development process. I’m very pleased with the final result and the value it brings to Titans.",
+      "avatarUrl": "/uploads/8b09019f-e056-472e-b3c8-4926830aae28.jpg",
+      "rating": 5,
+      "published": true,
+      "order": 0,
+      "createdAt": "2026-09-17T03:42:28.273+00:00",
+      "updatedAt": "2026-09-17T03:42:28.273+00:00"
+    }
+  ]
+}

@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // The generated Prisma client and its driver adapter are Node-only; keep them
-  // out of the bundler so the native better-sqlite3 binding resolves at runtime.
-  serverExternalPackages: ["@prisma/adapter-better-sqlite3", "better-sqlite3"],
+  // out of the bundler so the native pg binding resolves at runtime.
+  serverExternalPackages: ["@prisma/adapter-pg", "pg"],
 
   experimental: {
     serverActions: {

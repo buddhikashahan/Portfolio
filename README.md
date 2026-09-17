@@ -12,7 +12,7 @@ database and is edited from `/admin`. Nothing needs a redeploy to change.
 ```bash
 npm install
 cp .env.example .env      # then fill in the values below
-npm run db:deploy         # create the SQLite database from migrations
+npm run db:deploy         # create the schema from migrations
 npm run db:seed           # admin account + starter content
 npm run dev
 ```
@@ -25,7 +25,7 @@ the `ADMIN_EMAIL` / `ADMIN_PASSWORD` from `.env`, then change the password under
 
 | Variable               | Purpose                                                          |
 | ---------------------- | ---------------------------------------------------------------- |
-| `DATABASE_URL`         | Prisma connection string. Defaults to `file:./prisma/dev.db`.    |
+| `DATABASE_URL`         | Postgres connection string.                                      |
 | `AUTH_SECRET`          | Signs the session JWT. **At least 32 characters.**               |
 | `ADMIN_EMAIL`          | Email for the seeded dashboard account.                          |
 | `ADMIN_PASSWORD`       | Initial password for that account.                               |
@@ -47,11 +47,13 @@ node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
 | `npm run start`      | Serve the production build                      |
 | `npm run lint`       | ESLint                                          |
 | `npm run typecheck`  | `tsc --noEmit`                                  |
-| `npm run db:migrate` | Create and apply a migration (interactive)      |
-| `npm run db:deploy`  | Apply existing migrations (CI, production)      |
-| `npm run db:seed`    | Seed the admin account and starter content      |
-| `npm run db:studio`  | Browse the database in Prisma Studio            |
-| `npm run db:reset`   | Drop, re-migrate and re-seed                    |
+| `npm run db:migrate`        | Create and apply a migration (interactive)         |
+| `npm run db:deploy`         | Apply existing migrations (CI, production)         |
+| `npm run db:seed`           | Seed the admin account and sample content (fresh local DBs) |
+| `npm run db:seed-admin`     | Create/update just the admin account, no sample content |
+| `npm run db:import-content` | Import `prisma/content-export.json` (real content) |
+| `npm run db:studio`         | Browse the database in Prisma Studio               |
+| `npm run db:reset`          | Drop, re-migrate and re-seed                       |
 
 ## Routes
 
@@ -196,21 +198,37 @@ the two theme blocks to re-skin the site.
 
 ## Deploying
 
-The public pages are mostly static and the dashboard renders on demand, so any
-Node host works. Two things are local by default and need attention on a
-serverless platform (Vercel, Netlify), whose filesystem does not persist:
+The database is Postgres (via the `pg` driver adapter — see `src/lib/prisma.ts`).
+On Coolify, or any Docker host, point `DATABASE_URL` at your Postgres instance;
+an internal/private hostname (Coolify's default for a database it manages) only
+resolves from inside that host's own network, so migrations and seeding have to
+run from there too — the app's own build step, a Coolify "post-deployment
+command", or a one-off command in the app's terminal, not from a laptop outside
+that network.
 
-1. **Database** — switch to a hosted database:
-   - set `provider = "postgresql"` in `prisma/schema.prisma`;
-   - `npm install @prisma/adapter-pg`, use `PrismaPg` in `src/lib/prisma.ts`, and
-     remove the SQLite packages from `serverExternalPackages` in `next.config.ts`;
-   - add `mode: "insensitive"` to the `contains` filters in `lib/queries` and the
-     admin list pages (SQLite's `LIKE` is already case-insensitive; Postgres is not);
-   - point `DATABASE_URL` at it, then run `npm run db:deploy` and `npm run db:seed`.
-2. **Uploads** — reimplement `lib/storage.ts` against object storage.
+First deploy, in order:
 
-On a VPS or container with a persistent disk, both work as-is — just back up
-`prisma/dev.db` and `storage/uploads/`.
+```bash
+npm run db:deploy           # apply migrations, creates all tables
+npm run db:seed-admin       # creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD
+npm run db:import-content   # loads prisma/content-export.json (the real site content)
+```
 
-Set `AUTH_SECRET` and `NEXT_PUBLIC_SITE_URL=https://buddhika.dev` in the host's
-environment.
+Don't run `npm run db:seed` in production — it inserts generic sample content
+(placeholder projects, posts, etc.) instead of what's in `content-export.json`.
+`db:import-content` is safe to re-run; it upserts by id rather than only
+inserting once.
+
+Two things are local by default and need a persistent volume (or object storage)
+on a platform whose filesystem doesn't survive redeploys:
+
+1. **Uploads** — `storage/uploads/` (see `lib/storage.ts`). Mount it as a
+   persistent volume in Coolify, and copy over anything already in the local
+   `storage/uploads/` folder — content already imported with `db:import-content`
+   references those files by name (e.g. `coverImage: "/uploads/<uuid>.png"`).
+2. **Rate limiting** — `lib/rate-limit.ts` is in-memory; fine for a single
+   container, resets on restart. Back it with Redis for multiple instances.
+
+Required environment variables on the host: `DATABASE_URL`, `AUTH_SECRET` (32+
+random characters), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`, and
+`NEXT_PUBLIC_SITE_URL=https://buddhika.dev`.

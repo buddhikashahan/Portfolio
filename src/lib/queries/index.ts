@@ -44,9 +44,6 @@ const PROJECT_ORDER: Record<ProjectSort, Prisma.ProjectOrderByWithRelationInput[
 /**
  * One page of published projects. Filtering happens in the database so the
  * page count stays correct however large the catalogue grows.
- *
- * SQLite's LIKE is already case-insensitive for ASCII. On Postgres, add
- * `mode: "insensitive"` to each `contains` below.
  */
 // Not wrapped in `cache`: it keys on argument identity, so a fresh options
 // object per call would never hit it, and this runs once per request anyway.
@@ -65,9 +62,9 @@ export async function getProjectsPage(options: {
     ...(options.q
       ? {
           OR: [
-            { title: { contains: options.q } },
-            { summary: { contains: options.q } },
-            { tags: { contains: options.q } },
+            { title: { contains: options.q, mode: "insensitive" as const } },
+            { summary: { contains: options.q, mode: "insensitive" as const } },
+            { tags: { contains: options.q, mode: "insensitive" as const } },
           ],
         }
       : {}),
@@ -182,9 +179,9 @@ export async function getPostsPage(options: { tag?: string; q?: string; page?: s
         ? [
             {
               OR: [
-                { title: { contains: options.q } },
-                { excerpt: { contains: options.q } },
-                { tags: { contains: options.q } },
+                { title: { contains: options.q, mode: "insensitive" as const } },
+                { excerpt: { contains: options.q, mode: "insensitive" as const } },
+                { tags: { contains: options.q, mode: "insensitive" as const } },
               ],
             },
           ]

@@ -1,11 +1,10 @@
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@/generated/prisma/client";
 
 /**
  * Prisma 7 connects through a driver adapter rather than a Rust query engine.
- * Swapping databases is a three-line change: replace this adapter (e.g. with
- * `PrismaPg` from `@prisma/adapter-pg`), update `provider` in the schema, and
- * point `DATABASE_URL` at the new server.
+ * Swapping databases again is a three-line change: replace this adapter,
+ * update `provider` in the schema, and point `DATABASE_URL` at the new server.
  */
 function createPrismaClient() {
   const url = process.env.DATABASE_URL;
@@ -16,7 +15,7 @@ function createPrismaClient() {
     );
   }
 
-  const adapter = new PrismaBetterSqlite3({ url });
+  const adapter = new PrismaPg({ connectionString: url });
 
   return new PrismaClient({
     adapter,

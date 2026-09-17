@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 /// Dashboard operator. Seeded from ADMIN_EMAIL / ADMIN_PASSWORD.

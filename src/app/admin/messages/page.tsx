@@ -22,10 +22,10 @@ export default async function AdminMessagesPage(props: PageProps<"/admin/message
   const search: Prisma.MessageWhereInput = q
     ? {
         OR: [
-          { name: { contains: q } },
-          { email: { contains: q } },
-          { company: { contains: q } },
-          { message: { contains: q } },
+          { name: { contains: q, mode: "insensitive" as const } },
+          { email: { contains: q, mode: "insensitive" as const } },
+          { company: { contains: q, mode: "insensitive" as const } },
+          { message: { contains: q, mode: "insensitive" as const } },
         ],
       }
     : {};

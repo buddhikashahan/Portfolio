@@ -24,7 +24,13 @@ export default async function AdminProjectsPage(props: PageProps<"/admin/project
   const status = param(params, "status");
 
   const search: Prisma.ProjectWhereInput = q
-    ? { OR: [{ title: { contains: q } }, { slug: { contains: q } }, { tags: { contains: q } }] }
+    ? {
+        OR: [
+          { title: { contains: q, mode: "insensitive" as const } },
+          { slug: { contains: q, mode: "insensitive" as const } },
+          { tags: { contains: q, mode: "insensitive" as const } },
+        ],
+      }
     : {};
 
   const where: Prisma.ProjectWhereInput = {
