@@ -47,4 +47,11 @@ export function staggerContainer(stagger = 0.08, delayChildren = 0): Variants {
   };
 }
 
-export const viewportOnce = { once: true, amount: 0.2 } as const;
+/**
+ * `amount: 0.2` (20% of the element already on screen) reads fine on a tall
+ * desktop viewport but on a short mobile one it means real content sits at
+ * `opacity: 0` until you scroll well into it. Triggering off the first sliver
+ * entering view, a little before it's actually on screen, fixes that without
+ * giving up the entrance animation.
+ */
+export const viewportOnce = { once: true, amount: 0, margin: "0px 0px -80px 0px" } as const;
