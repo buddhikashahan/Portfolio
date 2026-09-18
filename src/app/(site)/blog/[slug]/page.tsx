@@ -11,7 +11,7 @@ import { CoverImage } from "@/components/ui/cover-image";
 import { getPostBySlug, getPublishedPostSlugs, getRelatedPosts } from "@/lib/queries";
 import { jsonLd } from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { formatDate, parseTags, readingTime, truncate } from "@/lib/utils";
+import { absoluteUrl, formatDate, parseTags, readingTime, truncate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const posts = await getPublishedPostSlugs();
@@ -59,8 +59,17 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
     datePublished: post.publishedAt?.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     author: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
-    image: post.coverImage ? [post.coverImage] : undefined,
+    image: post.coverImage ? [absoluteUrl(post.coverImage)] : undefined,
     mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Blog", item: `${siteConfig.url}/blog` },
+      { "@type": "ListItem", position: 2, name: post.title, item: `${siteConfig.url}/blog/${post.slug}` },
+    ],
   };
 
   return (
@@ -68,6 +77,10 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd(postJsonLd)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(breadcrumbJsonLd)}
       />
 
       <Section top="tight" bottom="none">
@@ -116,6 +129,7 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
           <div className="relative aspect-video overflow-hidden rounded-panel border border-hairline bg-surface-sunken">
             <CoverImage
               src={post.coverImage}
+              alt={`${post.title} cover`}
               sizes="(max-width: 1024px) 100vw, 56rem"
               priority
             />

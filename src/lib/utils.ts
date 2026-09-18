@@ -1,9 +1,20 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { siteConfig } from "@/lib/site-config";
+
 /** Merge conditional class names, with later Tailwind utilities winning. */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+/**
+ * JSON-LD has no `metadataBase` to resolve against, unlike the Metadata API,
+ * so an uploaded file's `/uploads/…` path needs to be made absolute by hand
+ * before it goes in a script tag — Google's structured data rules require it.
+ */
+export function absoluteUrl(path: string) {
+  return path.startsWith("http") ? path : `${siteConfig.url}${path}`;
 }
 
 export function slugify(input: string) {

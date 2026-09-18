@@ -14,6 +14,7 @@ export function PostCard({ post }: { post: Post }) {
         <div className="relative aspect-16/10 overflow-hidden border-b border-hairline bg-surface-sunken">
           <CoverImage
             src={post.coverImage}
+            alt={`${post.title} cover`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             hoverZoom
           />

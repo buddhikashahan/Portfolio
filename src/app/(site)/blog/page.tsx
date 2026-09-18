@@ -57,6 +57,7 @@ export default async function BlogPage(props: PageProps<"/blog">) {
                     <div className="relative aspect-16/10 overflow-hidden bg-surface-sunken md:aspect-auto">
                       <CoverImage
                         src={featured.coverImage}
+                        alt={`${featured.title} cover`}
                         priority
                         sizes="(max-width: 768px) 100vw, 50vw"
                         hoverZoom

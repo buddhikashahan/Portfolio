@@ -12,7 +12,9 @@ import { ButtonLink } from "@/components/ui/button";
 import { Container, Section } from "@/components/ui/section";
 import { CoverImage } from "@/components/ui/cover-image";
 import { getProjectBySlug, getPublishedProjectSlugs, getRelatedProjects } from "@/lib/queries";
-import { formatDate, parseRepos, parseTags, truncate } from "@/lib/utils";
+import { jsonLd } from "@/lib/json-ld";
+import { siteConfig } from "@/lib/site-config";
+import { absoluteUrl, formatDate, parseRepos, parseTags, truncate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const projects = await getPublishedProjectSlugs();
@@ -52,8 +54,41 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
   const liveLinks = parseRepos(project.liveUrls);
   const related = await getRelatedProjects(project.slug, project.category);
 
+  // Structured data so the case study can surface as a rich result in search.
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.summary,
+    dateCreated: project.date.toISOString(),
+    dateModified: project.updatedAt.toISOString(),
+    creator: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
+    image: project.coverImage ? [absoluteUrl(project.coverImage)] : undefined,
+    keywords: tags.length > 0 ? tags.join(", ") : undefined,
+    url: `${siteConfig.url}/projects/${project.slug}`,
+    mainEntityOfPage: `${siteConfig.url}/projects/${project.slug}`,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Projects", item: `${siteConfig.url}/projects` },
+      { "@type": "ListItem", position: 2, name: project.title, item: `${siteConfig.url}/projects/${project.slug}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(projectJsonLd)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(breadcrumbJsonLd)}
+      />
+
       <Section top="tight" bottom="none">
         <Container className="max-w-4xl">
           <Link

@@ -21,7 +21,7 @@ import {
 } from "@/lib/queries";
 import { jsonLd } from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { formatDateRange } from "@/lib/utils";
+import { absoluteUrl, formatDateRange } from "@/lib/utils";
 
 export default async function HomePage() {
   // Independent reads, so fetch them in parallel rather than awaiting in series.
@@ -46,6 +46,7 @@ export default async function HomePage() {
     jobTitle: profile.headline,
     email: `mailto:${profile.email}`,
     url: siteConfig.url,
+    image: profile.avatarUrl ? absoluteUrl(profile.avatarUrl) : undefined,
     ...(profile.location ? { address: { "@type": "PostalAddress", addressLocality: profile.location } } : {}),
     sameAs: [profile.githubUrl, profile.linkedinUrl, profile.twitterUrl].filter(Boolean),
   };

@@ -18,6 +18,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.coverImage ? (
           <CoverImage
             src={project.coverImage}
+            alt={`${project.title} cover`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             hoverZoom
           />
