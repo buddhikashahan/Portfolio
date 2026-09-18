@@ -27,15 +27,22 @@ the `ADMIN_EMAIL` / `ADMIN_PASSWORD` from `.env`, then change the password under
 | ---------------------- | ---------------------------------------------------------------- |
 | `DATABASE_URL`         | Postgres connection string.                                      |
 | `AUTH_SECRET`          | Signs the session JWT. **At least 32 characters.**               |
+| `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` | Encrypts Server Action reference IDs. Must stay fixed across builds/replicas — see [Deploying](#deploying). |
 | `ADMIN_EMAIL`          | Email for the seeded dashboard account.                          |
 | `ADMIN_PASSWORD`       | Initial password for that account.                               |
 | `ADMIN_NAME`           | Display name for that account.                                   |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, Open Graph and the sitemap.       |
 
-Generate a secret with:
+Generate `AUTH_SECRET` with:
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
+
+Generate `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` with:
+
+```bash
+openssl rand -base64 32
 ```
 
 ## Scripts
@@ -212,13 +219,21 @@ just at runtime.
 
 Environment variables to set in Coolify:
 
-- `DATABASE_URL`, `AUTH_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`,
-  `NEXT_PUBLIC_SITE_URL` — as normal runtime variables.
-- `DATABASE_URL` and `NEXT_PUBLIC_SITE_URL` **also** need "Available at
-  Buildtime" turned on (Coolify passes those through as Docker build args —
-  see the `ARG`/`ENV` lines in the builder stage of the `Dockerfile`).
+- `DATABASE_URL`, `AUTH_SECRET`, `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY`,
+  `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`, `NEXT_PUBLIC_SITE_URL` — as
+  normal runtime variables.
+- `DATABASE_URL`, `NEXT_PUBLIC_SITE_URL` and
+  `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` **also** need "Available at Buildtime"
+  turned on (Coolify passes those through as Docker build args — see the
+  `ARG`/`ENV` lines in the builder stage of the `Dockerfile`).
   `NEXT_PUBLIC_*` values are inlined into the client bundle at build time
-  regardless of platform, so this isn't Coolify-specific.
+  regardless of platform, so that part isn't Coolify-specific.
+  `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` must additionally stay **identical
+  across every build and every replica** — Next.js generates a random one
+  per build otherwise, and a page rendered by one build can't call actions
+  verified against another's key, which surfaces as "Server Reference ID
+  did not match the expected format" in the logs. Generate one with
+  `openssl rand -base64 32` and keep it fixed once set.
 
 First deploy, in order:
 

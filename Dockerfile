@@ -26,10 +26,16 @@ COPY . .
 # the project/post detail pages are statically generated from the database
 # (generateStaticParams), so both must be reachable during the build itself —
 # mark them "Available at Buildtime" for this app in Coolify.
+# NEXT_SERVER_ACTIONS_ENCRYPTION_KEY must be identical at build time and at
+# runtime (and across every rebuild/replica) — otherwise a page built with one
+# key can't call actions verified against another, which is where "Server
+# Reference ID did not match the expected format" comes from.
 ARG DATABASE_URL
 ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
 ENV DATABASE_URL=$DATABASE_URL
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=$NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
 
 RUN npm run build
 
