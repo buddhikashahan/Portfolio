@@ -199,36 +199,58 @@ the two theme blocks to re-skin the site.
 ## Deploying
 
 The database is Postgres (via the `pg` driver adapter — see `src/lib/prisma.ts`).
-On Coolify, or any Docker host, point `DATABASE_URL` at your Postgres instance;
-an internal/private hostname (Coolify's default for a database it manages) only
-resolves from inside that host's own network, so migrations and seeding have to
-run from there too — the app's own build step, a Coolify "post-deployment
-command", or a one-off command in the app's terminal, not from a laptop outside
-that network.
+The `Dockerfile` builds and serves the app; on Coolify, point it at this repo
+and it auto-detects the Dockerfile.
+
+An internal/private database hostname (Coolify's default for a database it
+manages) only resolves from inside that host's own network — never from
+outside it. That has one consequence worth knowing before the first deploy:
+several pages query the database at **build time** (`generateStaticParams` on
+the project/post detail pages, the Open Graph image), so `DATABASE_URL` has to
+be reachable, and already migrated, *during the Docker build itself* — not
+just at runtime.
+
+Environment variables to set in Coolify:
+
+- `DATABASE_URL`, `AUTH_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`,
+  `NEXT_PUBLIC_SITE_URL` — as normal runtime variables.
+- `DATABASE_URL` and `NEXT_PUBLIC_SITE_URL` **also** need "Available at
+  Buildtime" turned on (Coolify passes those through as Docker build args —
+  see the `ARG`/`ENV` lines in the builder stage of the `Dockerfile`).
+  `NEXT_PUBLIC_*` values are inlined into the client bundle at build time
+  regardless of platform, so this isn't Coolify-specific.
 
 First deploy, in order:
 
-```bash
-npm run db:deploy           # apply migrations, creates all tables
-npm run db:seed-admin       # creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD
-npm run db:import-content   # loads prisma/content-export.json (the real site content)
-```
+1. Provision the Postgres database and make sure `DATABASE_URL` is reachable
+   and already migrated *before* the first build — a build against an
+   unmigrated (tables don't exist yet) or unreachable database fails, since
+   the pages above query it while building. Run migrations from wherever can
+   currently reach the database (a temporary public connection string works
+   fine for this one-time step, even if the app itself only ever gets the
+   private one):
+   ```bash
+   npm run db:deploy
+   ```
+2. Build and deploy the app in Coolify.
+3. Once it's running, create the admin account and load the real content —
+   from Coolify's terminal for the app (or a post-deployment command):
+   ```bash
+   npm run db:seed-admin       # creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD
+   npm run db:import-content   # loads prisma/content-export.json (the real site content)
+   ```
 
 Don't run `npm run db:seed` in production — it inserts generic sample content
 (placeholder projects, posts, etc.) instead of what's in `content-export.json`.
-`db:import-content` is safe to re-run; it upserts by id rather than only
-inserting once.
+`db:deploy` and `db:import-content` are both safe to re-run.
 
 Two things are local by default and need a persistent volume (or object storage)
 on a platform whose filesystem doesn't survive redeploys:
 
-1. **Uploads** — `storage/uploads/` (see `lib/storage.ts`). Mount it as a
-   persistent volume in Coolify, and copy over anything already in the local
-   `storage/uploads/` folder — content already imported with `db:import-content`
-   references those files by name (e.g. `coverImage: "/uploads/<uuid>.png"`).
+1. **Uploads** — `storage/uploads/` (see `lib/storage.ts`). Mount a persistent
+   volume at `/app/storage` in Coolify (that's the Dockerfile's `WORKDIR`), and
+   copy over anything already in the local `storage/uploads/` folder — content
+   already imported with `db:import-content` references those files by name
+   (e.g. `coverImage: "/uploads/<uuid>.png"`).
 2. **Rate limiting** — `lib/rate-limit.ts` is in-memory; fine for a single
    container, resets on restart. Back it with Redis for multiple instances.
-
-Required environment variables on the host: `DATABASE_URL`, `AUTH_SECRET` (32+
-random characters), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`, and
-`NEXT_PUBLIC_SITE_URL=https://buddhika.dev`.
