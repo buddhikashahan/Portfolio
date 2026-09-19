@@ -17,6 +17,17 @@ export function absoluteUrl(path: string) {
   return path.startsWith("http") ? path : `${siteConfig.url}${path}`;
 }
 
+/**
+ * A page title close to Google's ~60-character display budget still gets
+ * `" - Buddhika Shahan"` appended by the root layout's template, pushing it
+ * well past that budget and into a truncated result. Long, already-specific
+ * titles (a project or post's own name) skip the suffix and stand on their
+ * own; short ones (page labels like "Contact") still get the brand name.
+ */
+export function pageTitle(title: string): string | { absolute: string } {
+  return title.length > 42 ? { absolute: title } : title;
+}
+
 export function slugify(input: string) {
   return input
     .toLowerCase()

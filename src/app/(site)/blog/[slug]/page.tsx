@@ -11,7 +11,7 @@ import { CoverImage } from "@/components/ui/cover-image";
 import { getPostBySlug, getPublishedPostSlugs, getRelatedPosts } from "@/lib/queries";
 import { jsonLd } from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { absoluteUrl, formatDate, parseTags, readingTime, truncate } from "@/lib/utils";
+import { absoluteUrl, formatDate, pageTitle, parseTags, readingTime, truncate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const posts = await getPublishedPostSlugs();
@@ -27,7 +27,7 @@ export async function generateMetadata(
   if (!post) return { title: "Post not found" };
 
   return {
-    title: post.title,
+    title: pageTitle(post.title),
     description: truncate(post.excerpt, 160),
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {

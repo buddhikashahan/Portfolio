@@ -14,7 +14,7 @@ import { CoverImage } from "@/components/ui/cover-image";
 import { getProjectBySlug, getPublishedProjectSlugs, getRelatedProjects } from "@/lib/queries";
 import { jsonLd } from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { absoluteUrl, formatDate, parseRepos, parseTags, truncate } from "@/lib/utils";
+import { absoluteUrl, formatDate, pageTitle, parseRepos, parseTags, truncate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const projects = await getPublishedProjectSlugs();
@@ -30,7 +30,7 @@ export async function generateMetadata(
   if (!project) return { title: "Project not found" };
 
   return {
-    title: project.title,
+    title: pageTitle(project.title),
     description: truncate(project.summary, 160),
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {

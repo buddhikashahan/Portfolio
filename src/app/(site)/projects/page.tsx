@@ -29,11 +29,12 @@ export async function generateMetadata(
     : "Web, mobile, data and AI projects: case studies covering the problem, the approach and the outcome.";
   const description = pageNum > 1 ? `${baseDescription} Page ${pageNum}.` : baseDescription;
 
-  // A search query produces too many thin, near-duplicate variants to be
-  // worth indexing on its own, so those consolidate to the base listing.
-  // Category and pagination are real, distinct content and get their own
-  // self-referencing canonical.
-  const canonical = q ? "/projects" : hrefWith("/projects", {}, { category, page }) || "/projects";
+  // A search query, or a category with only one or two projects in it, is
+  // too thin to be worth indexing on its own, so both consolidate to the
+  // base listing. Only plain pagination gets a self-referencing canonical —
+  // once the catalogue is big enough that a category page is a substantial
+  // page in its own right, this can switch to self-referencing it too.
+  const canonical = category || q ? "/projects" : hrefWith("/projects", {}, { page }) || "/projects";
 
   return { title, description, alternates: { canonical } };
 }

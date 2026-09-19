@@ -68,7 +68,7 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
               {active.avatarUrl ? (
                 <Image
                   src={active.avatarUrl}
-                  alt=""
+                  alt={`${active.name} photo`}
                   width={36}
                   height={36}
                   className="size-9 rounded-full object-cover"

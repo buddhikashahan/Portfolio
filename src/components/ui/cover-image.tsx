@@ -29,9 +29,15 @@ export function CoverImage({
 }) {
   return (
     <>
+      {/*
+        aria-hidden removes this from the accessibility tree regardless of
+        `alt`, so giving it the same text as the foreground costs nothing for
+        real screen readers — it just stops SEO checkers that don't
+        understand aria-hidden from flagging it as a missing alt attribute.
+      */}
       <Image
         src={src}
-        alt=""
+        alt={alt}
         aria-hidden
         fill
         sizes={sizes}

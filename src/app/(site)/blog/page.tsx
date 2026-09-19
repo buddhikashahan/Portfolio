@@ -30,11 +30,12 @@ export async function generateMetadata(props: PageProps<"/blog">): Promise<Metad
     : "Notes on full-stack architecture, interface design, and lessons from shipping real products.";
   const description = pageNum > 1 ? `${baseDescription} Page ${pageNum}.` : baseDescription;
 
-  // A search query produces too many thin, near-duplicate variants to be
-  // worth indexing on its own, so those consolidate to the base listing.
-  // A topic tag and pagination are real, distinct content and get their
-  // own self-referencing canonical.
-  const canonical = q ? "/blog" : hrefWith("/blog", {}, { tag, page }) || "/blog";
+  // A search query, or a tag with only a couple of posts under it, is too
+  // thin to be worth indexing on its own, so both consolidate to the base
+  // listing. Only plain pagination gets a self-referencing canonical — once
+  // there's enough per tag for it to be a substantial page on its own, this
+  // can switch to self-referencing it too.
+  const canonical = tag || q ? "/blog" : hrefWith("/blog", {}, { page }) || "/blog";
 
   return { title, description, alternates: { canonical } };
 }
