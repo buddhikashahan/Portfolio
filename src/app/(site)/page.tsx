@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
@@ -22,6 +23,15 @@ import {
 import { jsonLd } from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import { absoluteUrl, formatDateRange } from "@/lib/utils";
+
+// `absolute` bypasses the root layout's "%s - Buddhika Shahan" template —
+// the home page's title already carries the full brand name, and templating
+// it would repeat "Buddhika Shahan" twice.
+export const metadata: Metadata = {
+  title: { absolute: siteConfig.title },
+  description: siteConfig.description,
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
   // Independent reads, so fetch them in parallel rather than awaiting in series.
@@ -67,7 +77,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="What I do"
             title="Services"
-            description="End-to-end product work — from the data model and API through to the interface people actually touch."
+            description="End-to-end product work: from the data model and API through to the interface people actually touch."
           />
           <div className="mt-12">
             <ServicesGrid services={services} />

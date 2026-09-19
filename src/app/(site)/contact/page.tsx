@@ -13,10 +13,12 @@ import { ContactForm } from "@/components/site/contact-form";
 import { Card } from "@/components/ui/card";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { getProfile } from "@/lib/queries";
+import { jsonLd } from "@/lib/json-ld";
 import { fadeInLeft, fadeInRight } from "@/lib/motion";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Availability",
   description:
     "Start a project conversation. Tell me what you are building and I will reply within a day.",
   alternates: { canonical: "/contact" },
@@ -66,8 +68,20 @@ export default async function ContactPage() {
     href: string;
   }[];
 
+  const contactPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact",
+    url: `${siteConfig.url}/contact`,
+    about: { "@type": "Person", name: profile.fullName, url: siteConfig.url },
+  };
+
   return (
     <Section top="tight" bottom="last">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(contactPageJsonLd)}
+      />
       <Container>
         <SectionHeading
           as="h1"

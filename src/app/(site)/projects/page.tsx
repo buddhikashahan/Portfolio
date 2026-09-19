@@ -8,14 +8,35 @@ import { Pagination } from "@/components/ui/pagination";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { ParamSelect, SearchInput } from "@/components/ui/url-controls";
 import { getProjectCategories, getProjectsPage } from "@/lib/queries";
-import { param } from "@/lib/pagination";
+import { jsonLd } from "@/lib/json-ld";
+import { siteConfig } from "@/lib/site-config";
+import { hrefWith, param } from "@/lib/pagination";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Web, mobile, data and AI projects — case studies covering the problem, the approach and the outcome.",
-  alternates: { canonical: "/projects" },
-};
+export async function generateMetadata(
+  props: PageProps<"/projects">,
+): Promise<Metadata> {
+  const params = await props.searchParams;
+  const category = param(params, "category");
+  const q = param(params, "q");
+  const page = param(params, "page");
+  const pageNum = page ? Number.parseInt(page, 10) : 1;
+
+  const base = category ? `${category} Projects` : "Portfolio Projects";
+  const title = pageNum > 1 ? `${base} - Page ${pageNum}` : base;
+
+  const baseDescription = category
+    ? `${category} projects: case studies covering the problem, the approach and the outcome.`
+    : "Web, mobile, data and AI projects: case studies covering the problem, the approach and the outcome.";
+  const description = pageNum > 1 ? `${baseDescription} Page ${pageNum}.` : baseDescription;
+
+  // A search query produces too many thin, near-duplicate variants to be
+  // worth indexing on its own, so those consolidate to the base listing.
+  // Category and pagination are real, distinct content and get their own
+  // self-referencing canonical.
+  const canonical = q ? "/projects" : hrefWith("/projects", {}, { category, page }) || "/projects";
+
+  return { title, description, alternates: { canonical } };
+}
 
 const sortOptions = [
   { value: "new", label: "Newest first" },
@@ -36,13 +57,33 @@ export default async function ProjectsPage(props: PageProps<"/projects">) {
 
   const filtered = Boolean(category || q);
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: category ? `${category} Projects` : "Projects",
+    url: `${siteConfig.url}/projects`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: items.map((project, index) => ({
+        "@type": "ListItem",
+        position: info.skip + index + 1,
+        url: `${siteConfig.url}/projects/${project.slug}`,
+        name: project.title,
+      })),
+    },
+  };
+
   return (
     <Section top="tight" bottom="last">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(collectionJsonLd)}
+      />
       <Container>
         <SectionHeading
           as="h1"
           eyebrow="Selected work"
-          title="Projects"
+          title={category ? `${category} Projects` : "Projects"}
           description="Each one written up as a short case study: what the problem was, what I built, and what changed as a result."
         />
 

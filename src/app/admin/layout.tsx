@@ -4,7 +4,7 @@ import { AdminShell } from "@/components/admin/admin-shell";
 import { requireAdmin } from "@/lib/auth/dal";
 
 export const metadata: Metadata = {
-  title: { default: "Dashboard", template: "%s — Dashboard" },
+  title: { default: "Dashboard", template: "%s - Dashboard" },
   robots: { index: false, follow: false },
 };
 

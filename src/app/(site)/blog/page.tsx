@@ -10,15 +10,34 @@ import { Pagination } from "@/components/ui/pagination";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { SearchInput } from "@/components/ui/url-controls";
 import { getPostTags, getPostsPage } from "@/lib/queries";
-import { param } from "@/lib/pagination";
+import { jsonLd } from "@/lib/json-ld";
+import { siteConfig } from "@/lib/site-config";
+import { hrefWith, param } from "@/lib/pagination";
 import { formatDate, readingTime } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Notes on full-stack architecture, interface design, and lessons from shipping real products.",
-  alternates: { canonical: "/blog" },
-};
+export async function generateMetadata(props: PageProps<"/blog">): Promise<Metadata> {
+  const params = await props.searchParams;
+  const tag = param(params, "tag");
+  const q = param(params, "q");
+  const page = param(params, "page");
+  const pageNum = page ? Number.parseInt(page, 10) : 1;
+
+  const base = tag ? `${tag} Articles` : "Blog & Articles";
+  const title = pageNum > 1 ? `${base} - Page ${pageNum}` : base;
+
+  const baseDescription = tag
+    ? `Posts tagged ${tag}: full-stack architecture, interface design, and lessons from shipping real products.`
+    : "Notes on full-stack architecture, interface design, and lessons from shipping real products.";
+  const description = pageNum > 1 ? `${baseDescription} Page ${pageNum}.` : baseDescription;
+
+  // A search query produces too many thin, near-duplicate variants to be
+  // worth indexing on its own, so those consolidate to the base listing.
+  // A topic tag and pagination are real, distinct content and get their
+  // own self-referencing canonical.
+  const canonical = q ? "/blog" : hrefWith("/blog", {}, { tag, page }) || "/blog";
+
+  return { title, description, alternates: { canonical } };
+}
 
 export default async function BlogPage(props: PageProps<"/blog">) {
   const params = await props.searchParams;
@@ -33,13 +52,34 @@ export default async function BlogPage(props: PageProps<"/blog">) {
   const filtered = Boolean(tag || q);
   const nothingPublished = !filtered && !featured && info.total === 0;
 
+  const allItems = featured ? [featured, ...items] : items;
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: tag ? `${tag} Articles` : "Blog",
+    url: `${siteConfig.url}/blog`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: allItems.map((post, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${siteConfig.url}/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
+  };
+
   return (
     <Section top="tight" bottom="last">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(collectionJsonLd)}
+      />
       <Container>
         <SectionHeading
           as="h1"
           eyebrow="Writing"
-          title="Blog"
+          title={tag ? `${tag} Articles` : "Blog"}
           description="Things I have learned building software, written down so I remember them."
         />
 

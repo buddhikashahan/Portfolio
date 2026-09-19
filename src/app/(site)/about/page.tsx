@@ -27,11 +27,13 @@ import {
   getServices,
   getSkillCategories,
 } from "@/lib/queries";
+import { jsonLd } from "@/lib/json-ld";
 import { fadeInLeft, fadeInRight } from "@/lib/motion";
-import { formatDateRange, parseTags } from "@/lib/utils";
+import { siteConfig } from "@/lib/site-config";
+import { absoluteUrl, formatDateRange, parseTags } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Background, Experience & Skills",
   description:
     "Full-stack developer from Colombo, Sri Lanka. Background, experience, education and the stack I build on.",
   alternates: { canonical: "/about" },
@@ -70,8 +72,30 @@ export default async function AboutPage() {
     href?: string;
   }[];
 
+  const profilePageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: profile.fullName,
+      jobTitle: profile.headline,
+      description: profile.bio,
+      email: `mailto:${profile.email}`,
+      url: siteConfig.url,
+      image: profile.avatarUrl ? absoluteUrl(profile.avatarUrl) : undefined,
+      ...(profile.location
+        ? { address: { "@type": "PostalAddress", addressLocality: profile.location } }
+        : {}),
+      sameAs: [profile.githubUrl, profile.linkedinUrl, profile.twitterUrl].filter(Boolean),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(profilePageJsonLd)}
+      />
       <Section top="tight">
         <Container>
           <div className="grid items-start gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
@@ -236,7 +260,7 @@ export default async function AboutPage() {
                 {education.map((item) => (
                   <StaggerItem key={item.id}>
                     <p className="font-mono text-xs text-ink-subtle">
-                      {item.startYear} — {item.endYear ?? "Present"}
+                      {item.startYear} - {item.endYear ?? "Present"}
                     </p>
                     <h3 className="mt-1.5 font-medium text-ink">{item.degree}</h3>
                     <p className="mt-0.5 text-sm text-ink-muted">{item.institution}</p>

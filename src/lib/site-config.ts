@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "Buddhika",
   domain: "buddhika.dev",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://buddhika.dev",
-  title: "Buddhika Shahan — Full-Stack Developer",
+  title: "Buddhika Shahan - Full-Stack Developer in Sri Lanka",
   description:
     "Full-stack developer building robust backends, seamless frontends, and cloud-powered products. Available for freelance work.",
   keywords: [
